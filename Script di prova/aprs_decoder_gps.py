@@ -18,8 +18,7 @@ KISS_PORT = int(os.environ.get("KISS_PORT", "8001"))
 
 def extract_source(aprs_msg):
     """
-    Estrae il nominativo (mittente) dalla parte header del messaggio APRS,
-    ovvero la parte che precede il carattere '>'.
+    Estrae il nominativo del mittente dalla parte header del messaggio APRS, ovvero la parte che precede il carattere '>'.
     """
     if '>' in aprs_msg:
         return aprs_msg.split('>')[0]
@@ -29,9 +28,7 @@ def parse_position(aprs_msg):
     """
     Estrae la posizione GPS dal messaggio APRS.
 
-    Cerca (opzionalmente) un timestamp in formato zulu (6 cifre seguite da "z")
-    e poi i dati della posizione nel formato:
-      DDMM.mmN/DDDMM.mmE
+    Cerca (opzionalmente) un timestamp in formato zulu (6 cifre seguite da "z") e poi i dati della posizione nel formato DDMM.mmN/DDDMM.mmE
     """
     pattern = r'(?:\d{6}z)?(?P<lat_deg>\d{2})(?P<lat_min>\d{2}\.\d{2})(?P<lat_dir>[NS])[/\\](?P<lon_deg>\d{3})(?P<lon_min>\d{2}\.\d{2})(?P<lon_dir>[EW])'
     m = re.search(pattern, aprs_msg)

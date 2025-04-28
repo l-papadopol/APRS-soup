@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Invia un frame KISS via TCP per essere trasmesso e ripetuto tramite WIDE1-1 e WIDE2-2.
+Invia un frame KISS via TCP per essere trasmesso e ripetuto tramite WIDE1-1.
 """
 import os
 from ax253 import Frame
@@ -16,7 +16,7 @@ def main():
     frame = Frame.ui(
         destination="IZ6NNH-8",
         source=MYCALL,
-        path=["WIDE3-3"],
+        path=["WIDE1-1"],
         info=">Test invio APRS via KISS3 + Python",
     )
     ki.write(frame)
