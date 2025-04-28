@@ -1,0 +1,2860 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrbook
+\use_default_options true
+\maintain_unincluded_children no
+\language italian
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Progetto 
+\begin_inset Quotes eld
+\end_inset
+
+APRS
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+Relazione per il progetto del Corso di Reti di Calcolatori
+\end_layout
+
+\begin_layout Author
+Papadopol Lucian-Ioan
+\end_layout
+
+\begin_layout Chapter
+Introduzione
+\end_layout
+
+\begin_layout Section
+Il radioamatore,
+ il nominativo e la motivazione del progetto
+\end_layout
+
+\begin_layout Standard
+I radioamatori
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/Radioamatore
+\end_layout
+
+\end_inset
+
+ sono operatori autorizzati che utilizzano sistemi di radiocomunicazione per fini personali,
+ scientifici,
+ sperimentali e di pubblica utilità,
+ nel rispetto delle normative internazionali.
+\begin_inset Newline newline
+\end_inset
+
+Si distinguono per la loro competenza tecnica,
+ per l’interesse verso le comunicazioni via etere e per l’apertura alla sperimentazione.
+\begin_inset Newline newline
+\end_inset
+
+A differenza delle comunicazioni professionali o commerciali,
+ quelle radioamatoriali sono svolte su base volontaria e non lucrativa,
+ ma seguono regolamenti ben definiti e richiedono il superamento di un esame teorico e tecnico per ottenere la relativa licenza.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Ogni radioamatore dispone di un nominativo di chiamata
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/Indicativo_di_chiamata
+\end_layout
+
+\end_inset
+
+ univoco assegnato dall’autorità nazionale competente.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Questo identificativo,
+ chiamato 
+\begin_inset Quotes eld
+\end_inset
+
+call-sign
+\begin_inset Quotes erd
+\end_inset
+
+,
+ è utilizzato per tutte le comunicazioni radio ed è formato da una sigla che identifica il paese e una parte alfanumerica personale.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Nel 
+\series bold
+mio caso
+\series default
+,
+ il nominativo
+\series bold
+ principale
+\series default
+ è IZ6NNH,
+ utilizzato per le attività quotidiane e di sperimentazione,
+ mentre il nominativo IB6P è associato a 
+\series bold
+operazioni in ambito sportivo
+\series default
+,
+ come i contest radio internazionali.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Il mio percorso nel mondo della radio è iniziato subito dopo la fine delle scuole superiori:
+ affascinato dalla tecnica e motivato da un profondo interesse per l’elettronica e le telecomunicazioni,
+ ho conseguito la patente di radioamatore all’età di 18 anni,
+ immediatamente dopo l’esame di maturità.
+\begin_inset Newline newline
+\end_inset
+
+La curiosità verso tutto ciò che riguarda la trasmissione di segnali a distanza,
+ unita alla voglia di sperimentare sul campo,
+ ha reso naturale l’ingresso in questo ambito.
+\begin_inset Newline newline
+\end_inset
+
+Anche il mio percorso professionale ha seguito la stessa direzione.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Per oltre quindici anni ho lavorato come tecnico on-field per aziende in appalto a Telecom Italia,
+ specializzandomi nella realizzazione e manutenzione di reti di comunicazione su rame e tecnologie digitali come PSTN,
+ ADSL,
+ SHDSL e HDSL.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Questa esperienza ha consolidato il mio interesse per le infrastrutture di rete,
+ sia cablate sia radio,
+ rafforzando il legame tra la mia attività lavorativa e la mia passione da radioamatore.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Negli anni ho approfondito in particolare il settore delle comunicazioni dati via radio in condizioni estreme,
+ come ad esempio l’utilizzo di fenomeni naturali quali lo scattering troposferico,
+ oppure tecniche più avanzate come il moonbounce (EME),
+ che sfrutta la Luna come riflettore passivo per rimbalzare segnali radio verso la Terra.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Un ulteriore ambito che trovo particolarmente stimolante è l’utilizzo di ripetitori radio a bordo di satelliti in orbita bassa (LEO) e persino a bordo della Stazione Spaziale Internazionale (ISS).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Questo interesse nasce da una fascinazione per le missioni spaziali,
+ in particolare per il progetto Voyager,
+ che mi ha colpito sin da giovane per la capacità di inviare dati scientifici da distanze siderali utilizzando unicamente segnali radio.
+ L’idea che la radio possa fungere da ponte invisibile verso l’ignoto,
+ anche nelle condizioni più estreme,
+ ha continuato ad alimentare la mia curiosità e il desiderio di sperimentazione.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Proprio per questi motivi ho scelto di dedicare questo progetto allo studio dell’APRS,
+ un sistema che unisce i miei interessi per la radiotecnica,
+ le reti di comunicazione e l’elaborazione di dati in mobilità.
+ APRS rappresenta per me un perfetto punto di incontro tra teoria e pratica,
+ tra la dimensione personale e l’applicazione collettiva della comunicazione via radio.
+\end_layout
+
+\begin_layout Section
+Struttura della relazione
+\end_layout
+
+\begin_layout Standard
+La presente relazione è organizzata in due sezioni principali:
+ una parte teorica e una parte pratica,
+ pensate per fornire sia il contesto concettuale di riferimento,
+ sia l’analisi e documentazione delle attività sperimentali svolte.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+La 
+\series bold
+parte teorica
+\series default
+ è dedicata alla descrizione dei fondamenti su cui si basa il progetto.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In essa vengono illustrati il funzionamento del sistema APRS ed il protocollo AX.25 che ne costituisce la base a livello di collegamento.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Viene inoltre presentato un confronto tra i modelli teorici delle architetture di rete,
+ in particolare il modello ISO/OSI e la struttura reale della pila protocollare utilizzata in APRS,
+ con l’obiettivo di evidenziarne le peculiarità.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In questa sezione si chiariscono inoltre i principi di funzionamento dei meccanismi di instradamento dei pacchetti,
+ la funzione dei digipeater,
+ il ruolo del path,
+ e la logica di propagazione delle informazioni all’interno della rete radioamatoriale APRS.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+La 
+\series bold
+parte pratica
+\series default
+ è invece focalizzata sull’implementazione e sulla sperimentazione diretta di un sistema APRS completo,
+ impiegando strumenti software e hardware accessibili.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Vengono descritte le fasi di configurazione,
+ test e verifica di funzionamento di:
+\end_layout
+
+\begin_layout Itemize
+una stazione client basata su computer e software TNC Direwolf
+\end_layout
+
+\begin_layout Itemize
+un digipeater realizzato su piattaforma Raspberry Pi
+\end_layout
+
+\begin_layout Itemize
+script personalizzati per l’interazione diretta con la rete APRS via socket TCP.
+\end_layout
+
+\begin_layout Standard
+L’attività sperimentale ha l’obiettivo di analizzare la trasmissione e ricezione di pacchetti APRS dal vero,
+ comprendere in modo pratico il meccanismo di instradamento dei messaggi,
+ comprendere l'uso dei socket TCP in Python e testare le varie possibilità offerte dalla rete APRS.
+\end_layout
+
+\begin_layout Chapter
+Parte teorica
+\end_layout
+
+\begin_layout Section
+Che cos'è l'APRS
+\end_layout
+
+\begin_layout Standard
+L’APRS
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://en.wikipedia.org/wiki/Automatic_Packet_Reporting_System
+\end_layout
+
+\end_inset
+
+,
+ acronimo di Automatic Packet Reporting System,
+ è un protocollo di comunicazione ideato nei primi anni ’90 da Bob Bruninga (WB4APR) per soddisfare la necessità di trasmettere dati in tempo reale all’interno della comunità radioamatoriale.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Nato inizialmente come sistema per la localizzazione automatica delle stazioni mobili,
+ si è progressivamente evoluto fino a diventare una piattaforma di comunicazione tattica capace di trasmettere una varietà di informazioni geografiche e testuali,
+ attraverso l’uso di pacchetti radio.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Per comprendere il significato e la portata dell’APRS è utile inserirlo nel contesto più ampio dei sistemi packet radio,
+ nati a partire dagli anni '80 come evoluzione della telegrafia e fonia tradizionale.
+\begin_inset Newline newline
+\end_inset
+
+ I sistemi packet consentono la trasmissione di dati digitali via radio utilizzando il protocollo AX.25
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/AX.25
+\end_layout
+
+\end_inset
+
+,
+ sviluppato come adattamento radioamatoriale del protocollo HDLC
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/High-Level_Data_Link_Control
+\end_layout
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+In questi sistemi,
+ la comunicazione avviene generalmente in modalità punto-a-punto,
+ con meccanismi di handshaking,
+ numerazione di pacchetti e ritrasmissione in caso di errore,
+ simili a quanto avviene in una connessione TCP.
+\begin_inset Newline newline
+\end_inset
+
+APRS si differenzia da questa impostazione tradizionale per la sua natura uno-a-molti e non orientata alla connessione.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Non mira a stabilire una sessione affidabile tra due stazioni,
+ bensì a diffondere informazioni a chiunque sia in ascolto.
+\begin_inset Newline newline
+\end_inset
+
+Questo approccio lo rende più vicino a un sistema di tipo broadcast,
+ simile a una rete di sensori distribuiti piuttosto che a un sistema di comunicazione bidirezionale convenzionale.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A differenza dei sistemi packet tradizionali,
+ APRS adotta un modello in cui ogni pacchetto è destinato a tutti i ricevitori presenti nel raggio d’azione.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Questo permette la distribuzione immediata delle informazioni a più destinatari contemporaneamente,
+ rendendolo particolarmente utile in contesti operativi dinamici come gli eventi sul campo,
+ le situazioni di emergenza o le attività di monitoraggio ambientale.
+\begin_inset Newline newline
+\end_inset
+
+Il sistema è concepito per essere leggero,
+ veloce e facilmente accessibile anche con mezzi semplici.
+ Non si basa su meccanismi di connessione affidabile come il TCP,
+ ma punta sulla ridondanza e sulla diffusione costante dei pacchetti affinché l’informazione sia ricevuta almeno da qualcuno nel network.
+ 
+\begin_inset Newline newline
+\end_inset
+
+L’assenza di una vera e propria logica di sessione o di trasporto viene compensata dall’efficienza del modello a diffusione.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+L’APRS consente l’invio di dati in forma compatta e strutturata,
+ comprendenti:
+\end_layout
+
+\begin_layout Itemize
+la posizione geografica della stazione,
+ rilevata spesso via GPS;
+\end_layout
+
+\begin_layout Itemize
+messaggi testuali brevi,
+ anche confermabili;
+\end_layout
+
+\begin_layout Itemize
+oggetti e simboli visualizzabili su mappe digitali (come ambulanze,
+ veicoli,
+ eventi,
+ ostacoli);
+\end_layout
+
+\begin_layout Itemize
+dati meteorologici provenienti da stazioni automatiche;
+\end_layout
+
+\begin_layout Itemize
+bollettini e annunci a diffusione generale.
+\end_layout
+
+\begin_layout Standard
+Queste informazioni possono essere ricevute e visualizzate su software dedicati,
+ che consentono una rappresentazione grafica in tempo reale del territorio e delle entità in movimento o in postazione fissa.
+\begin_inset Newline newline
+\end_inset
+
+L’impiego dell’APRS è molto variegato.
+ Viene usato in ambito radioamatoriale per finalità operative,
+ logistiche e sperimentali.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Tra gli scenari applicativi più comuni si trovano:
+\end_layout
+
+\begin_layout Itemize
+le attività di emergenza e protezione civile,
+ dove è importante tracciare e coordinare squadre di intervento o mezzi mobili;
+\end_layout
+
+\begin_layout Itemize
+gli eventi sportivi o pubblici,
+ per il monitoraggio e il supporto logistico;
+\end_layout
+
+\begin_layout Itemize
+il tracciamento di sonde,
+ palloni aerostatici e veicoli sperimentali;
+\end_layout
+
+\begin_layout Itemize
+la raccolta e diffusione di dati meteorologici in tempo reale da postazioni dislocate sul territorio.
+\end_layout
+
+\begin_layout Standard
+Negli anni il sistema ha conosciuto una larga diffusione a livello internazionale,
+ supportato da numerose implementazioni software per diversi sistemi operativi e integrato in apparati radio dedicati.
+\begin_inset Newline newline
+\end_inset
+
+Il collegamento con la rete APRS-IS ha poi consentito l’estensione del sistema anche su Internet,
+ offrendo la possibilità di raccogliere e visualizzare i dati trasmessi via radio in forma globale attraverso portali pubblici.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Stack ISO/OSI e stack APRS
+\end_layout
+
+\begin_layout Standard
+Il modello ISO/OSI,
+ International Organization for Standardization / Open Systems Interconnection,
+ è un riferimento teorico a sette livelli utilizzato per descrivere e standardizzare il funzionamento delle reti di telecomunicazione e dei protocolli di comunicazione.
+\begin_inset Newline newline
+\end_inset
+
+Ogni livello svolge un ruolo specifico nella trasmissione dei dati da un'applicazione all'altra,
+ attraverso una rete.
+\begin_inset Newline newline
+\end_inset
+
+Nel contesto del protocollo APRS,
+ la struttura a sette livelli del modello ISO/OSI non viene implementata completamente,
+ bensì APRS si appoggia a una combinazione più semplice di protocolli,
+ in cui solo alcuni livelli dello stack ISO/OSI sono realmente rappresentati.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Il modello ISO/OSI
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/Modello_OSI
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+Il modello ISO/OSI è composto dai seguenti livelli,
+ dal più alto al più basso:
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Applicazione
+\shape default
+ – Fornisce servizi all’utente finale (es.
+ email,
+ browser,
+ messaggistica).
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Presentazione
+\shape default
+ – Traduce e formatta i dati (es.
+ codifica,
+ compressione,
+ cifratura).
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Sessione
+\shape default
+ – Gestisce le sessioni di comunicazione tra due nodi.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Trasporto
+\shape default
+ – Garantisce la consegna dei dati end-to-end (es.
+ TCP,
+ UDP).
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Rete
+\shape default
+ – Determina il percorso dei dati nella rete (es.
+ IP,
+ routing).
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Collegamento dati
+\shape default
+ – Gestisce l’indirizzamento fisico e l'accesso al mezzo.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Fisico
+\shape default
+ – Trasmette i bit sul mezzo fisico (es.
+ cavo,
+ radio,
+ onde).
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Lo stack APRS
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Nel sistema APRS,
+ molti di questi livelli non sono presenti o vengono svolti in modo semplificato:
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Livello Applicazione
+\shape default
+:
+ occupato interamente da 
+\nospellcheck on
+APRS
+\nospellcheck default
+,
+ che gestisce la codifica dei messaggi,
+ la formattazione delle posizioni GPS,
+ i dati meteo,
+ oggetti sulla mappa,
+ messaggi istantanei,
+ beacon,
+ ecc.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Livelli Presentazione,
+ Sessione,
+ Trasporto e Rete
+\shape default
+:
+ sono assenti.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Non esiste cifratura standard,
+ né gestione delle sessioni,
+ né affidabilità end-to-end o instradamento dinamico.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il routing è gestito in maniera statica tramite il meccanismo di digipeating.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Livello Collegamento Dati
+\shape default
+:
+ implementato con il protocollo AX.25,
+ che fornisce indirizzamento con call-sign,
+ controllo degli errori e instradamento attraverso digipeater.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Livello Fisico
+\shape default
+:
+ si basa tipicamente sulla modulazione AFSK su onde radio in banda VHF/UHF che è il mezzo fisico,
+ utilizzando dispositivi come Terminal Node Controller (TNC) hardware oppure software.
+\end_layout
+
+\begin_layout Standard
+Il seguente grafico mostra un confronto diretto tra i livelli del modello ISO/OSI e quelli implementati nello stack APRS;
+ viene anche evidenziata,
+ per ciascun livello,
+ l'unità di dato associata.
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename stack_model.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Stack ISO/OSI e stack APRS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Livello fisico
+\end_layout
+
+\begin_layout Standard
+Il livello fisico rappresenta l’insieme del mezzo di trasmissione,
+ delle sue proprietà intrinseche e delle caratteristiche tecniche della modulazione impiegata che regolano la trasmissione effettiva dei dati.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Qui trattiamo il mezzo trasmissivo e le sue caratteristiche,
+ la modalità di modulazione,
+ la larghezza di banda utilizzata e i tempi di propagazione del segnale.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Mezzo di trasmissione
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+L’APRS opera principalmente sulla banda VHF
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/Very_high_frequency
+\end_layout
+
+\end_inset
+
+ alla lunghezza di onda di 2 metri,
+ in particolare sulla frequenza 144.800 MHz in Europa.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename bandplan_2m.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Estratto del band-plan VHF & UP.
+ Banda dei 2m da 144Mhz a 146Mhz
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Il mezzo di trasmissione è costituito dall'onda elettromagnetica irradiata in aria libera,
+ utilizzando la modulazione di frequenza (FM).
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il segnale digitale viene convertito in segnale audio modulato in AFSK
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://en.wikipedia.org/wiki/Frequency-shift_keying
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+Audio Frequency-Shift Keying,
+ seguendo lo standard Bell 202
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://en.wikipedia.org/wiki/Bell_202
+\end_layout
+
+\end_inset
+
+,
+ sfruttando due toni distinti:
+\end_layout
+
+\begin_layout Itemize
+1200 Hz per il bit 1
+\end_layout
+
+\begin_layout Itemize
+2200 Hz per il bit 0
+\end_layout
+
+\begin_layout Standard
+Il segnale audio così modulato viene iniettato nel trasmettitore FM,
+ che lo converte in modulazione di frequenza e lo irradia via antenna.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il collegamento avviene tipicamente in modalità half-duplex,
+ ovvero una stazione può trasmettere o ricevere,
+ ma non contemporaneamente.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+Larghezza di banda
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Utilizzando una velocità di trasmissione standard di 1200 baud
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/Baud
+\end_layout
+
+\end_inset
+
+ con la modulazione AFSK Bell 202,
+ 1 baud corrisponde ad 1 bit/s.
+\begin_inset Newline newline
+\end_inset
+
+Facciamo qualche calcolo,
+ sfruttando la regola di Carson
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://en.wikipedia.org/wiki/Carson_bandwidth_rule
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula $B=2\ast(\Delta f+f_{m})$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+dove 
+\begin_inset Formula $B$
+\end_inset
+
+ è la larghezza di banda necessaria,
+ 
+\begin_inset Formula $\Delta f$
+\end_inset
+
+ è la deviazione massima della portante ed 
+\begin_inset Formula $f_{m}$
+\end_inset
+
+è la massima frequenza audio modulante,
+\begin_inset Newline newline
+\end_inset
+
+calcoliamo 
+\begin_inset Formula $B$
+\end_inset
+
+ ,
+ sostituendo alle variabili i dati 
+\begin_inset Formula $\Delta f=3kHz$
+\end_inset
+
+ e 
+\begin_inset Formula $f_{m}=2.2kHz$
+\end_inset
+
+ otteniamo come risultato 
+\begin_inset Formula $B=10kHz$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+La trasmissione APRS a 1200 baud,
+ utilizzando modulazione AFSK con toni a 1200 Hz e 2200 Hz,
+ e una deviazione di frequenza di circa 3 kHz in FM,
+ richiede una larghezza di banda tipica di circa 10 kHz,
+ compatibile con i canali FM standard da 12,5 kHz.
+\begin_inset Newline newline
+\end_inset
+
+Grazie a questa limitata occupazione di spettro,
+ l’APRS riesce a coesistere senza problemi con altri servizi radioamatoriali operanti nella stessa banda.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Ritardo (latenza)
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Il ritardo o latenza di trasmissione in un collegamento APRS su 144 MHz è composto da diversi contributi:
+\end_layout
+
+\begin_layout Itemize
+Il tempo necessario al modem TNC per modulare e preparare il pacchetto.
+\end_layout
+
+\begin_layout Itemize
+Il tempo di trasmissione del pacchetto stesso sul canale a 1200 baud.
+\end_layout
+
+\begin_layout Itemize
+Il tempo di propagazione dell'onda radio nell’atmosfera.
+\end_layout
+
+\begin_layout Standard
+Considerando ininfluente la velocità di elaborazione del TNC poiché grandemente maggiore rispetto alla velocità di trasmissione di 1200bit/s possiamo calcolare il tempo necessario all'invio di 330byte di dati,
+ che è la dimensione massima del frame AX.25,
+ quindi andiamo a valutare il caso peggiore.
+\begin_inset Newline newline
+\end_inset
+
+Il tempo di trasmissione di un pacchetto dati è calcolato dalla relazione:
+ 
+\begin_inset Formula $t=n_{bit}/v_{tx}$
+\end_inset
+
+ dove 
+\begin_inset Formula $t$
+\end_inset
+
+ è il tempo necessario a trasmettere 
+\begin_inset Formula $n_{bit}$
+\end_inset
+
+,
+ 
+\begin_inset Formula $n_{bit}$
+\end_inset
+
+ è la quantità di bit da trasmettere e 
+\begin_inset Formula $v_{tx}$
+\end_inset
+
+è la velocità di trasmissione in 
+\begin_inset Formula $bit/s$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Sostituendo i dati a nostra disposizione abbiamo un tempo di trasmissione di 2,2s per trasmettere 2640bit (330byte) alla velocità di trasmissione di 1200bit/s standard.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+La propagazione del segnale radio è praticamente istantanea su scala locale,
+ ritardo dell’ordine di microsecondi per distanze fino a 100 km,
+ dunque la latenza percepita è dominata quasi interamente dalla durata della trasmissione.
+\begin_inset Newline newline
+\end_inset
+
+Dimostro:
+ 
+\begin_inset Formula $t=\frac{d}{c}=\frac{1\ast10^{5}m}{3\ast10^{8}}=333us=3.3\ast10^{-4}s$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Va anche considerato il ritardo di accesso al canale,
+ dato che le stazioni operano in modalità condivisa con Carrier Sense Multiple Access (CSMA) p-persistente
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/CSMA
+\end_layout
+
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Hardware
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Per permettere la trasmissione e la ricezione di frame AX.25,
+ comunemente chiamati 
+\begin_inset Quotes eld
+\end_inset
+
+pacchetti
+\begin_inset Quotes erd
+\end_inset
+
+ dati su onde radio,
+ venne introdotto un dispositivo chiamato TNC,
+ acronimo di Terminal Node Controller.
+\begin_inset Newline newline
+\end_inset
+
+Il TNC ha rappresentato per lungo tempo l’interfaccia fondamentale tra il computer e la radio.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Collegato al computer tramite una porta seriale RS-232 o,
+ successivamente,
+ via USB,
+ il TNC si occupa di modulare i dati digitali in segnali audio;
+ i segnali audio quindi vengono trasmessi tramite un normale ricetrasmettitore VHF.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In ricezione,
+ il flusso audio proveniente dalla radio viene demodulato dal TNC e riconvertito in pacchetti dati leggibili dal software in esecuzione sul computer.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tnc_hw.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+TNC hardware
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La Figura 2.2 mostra chiaramente i collegamenti fisici:
+ il computer comunica con il TNC attraverso RS-232 o USB,
+ mentre il TNC dialoga con la radio attraverso segnali audio analogici,
+ fino all’antenna che irradia o riceve il segnale radio.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Nel corso degli anni,
+ con l’aumento della potenza di calcolo disponibile anche su macchine di basso costo e la diffusione di schede audio integrate o esterne è stato possibile sostituire completamente l’hardware del TNC con un'applicazione software;
+ questo ha portato allo sviluppo di TNC software,
+ tra cui uno dei più noti e utilizzati è Direwolf.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Direwolf è un TNC software che consente di inviare e ricevere i frame 
+\begin_inset Quotes eld
+\end_inset
+
+pacchetti
+\begin_inset Quotes erd
+\end_inset
+
+ AX.25 utilizzando una normale scheda audio come interfaccia fisica verso la radio.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In pratica,
+ la funzione di modulazione e demodulazione è svolta interamente in software.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il programma riceve i segnali audio in ingresso dal microfono della scheda audio (o da un'interfaccia dedicata) e li interpreta come frame AX.25.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Allo stesso modo,
+ può generare segnali audio in uscita per trasmettere i pacchetti in modalità AFSK,
+ che la radio invierà sotto forma di onde radio.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tnc_sw.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+TNC software
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ricapitolando una moderna stazione radio operante in APRS è composta da:
+\end_layout
+
+\begin_layout Itemize
+Ricetrasmettitore VHF,
+ anche portatile 
+\begin_inset Quotes eld
+\end_inset
+
+hand-held
+\begin_inset Quotes erd
+\end_inset
+
+ o modulo custom di comunicazione radio.
+\end_layout
+
+\begin_layout Itemize
+Antenna VHF omnidirezionale tipo 
+\begin_inset Quotes eld
+\end_inset
+
+ground plane
+\begin_inset Quotes erd
+\end_inset
+
+ oppure 
+\begin_inset Quotes eld
+\end_inset
+
+collineare
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Interfaccia audio radio - PC
+\end_layout
+
+\begin_layout Itemize
+PC con TNC software 
+\begin_inset Quotes eld
+\end_inset
+
+Direwolf
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Software applicativo di cartografia/messaggistica APRS
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename sa282.jpg
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Modulo SA828 VHF
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Si possono acquistare a costo irrisorio moduli radio rice-trasmittenti 
+\begin_inset Quotes eld
+\end_inset
+
+SA828
+\begin_inset Quotes erd
+\end_inset
+
+,
+ operanti a soli 5V di alimentazione,
+ di dimensioni molto ridotte e che possono sostituire in toto il complesso radio-antenna poiché dotati di un antenna flessibile da avvitare sul connettore SMA,
+ nella figura 2.5 coperto dal cappuccio rosso.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Questi moduli sono facilmente integrabili in applicazioni custom con sforzo minimo essendo sufficiente alimentarli e programmare la frequenza di utilizzo tramite un interfaccia UART seriale.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+I segnali audio di ingresso ed uscita verso la scheda audio ed il comando di trasmissione sono presenti su delle piazzole del circuito stampato rendendo agevole la connessione a single board computer quali RaspBerry Pi et simili.
+ Ciò agevola chi vuole dedicarsi allo sviluppo di un proprio sistema custom per accedere alla rete APRS.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Livello collegamento
+\end_layout
+
+\begin_layout Standard
+Nel contesto dello stack di protocolli APRS,
+ il livello dati corrisponde al secondo livello del modello ISO/OSI e rappresenta lo strato in cui i dati provenienti dal livello applicativo vengono organizzati in frame strutturati,
+ pronti per la trasmissione sul canale fisico.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In APRS,
+ questo livello è gestito dal protocollo AX.25,
+ che definisce il formato e le regole di trasporto dei pacchetti dati via radio.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Tuttavia,
+ per comprenderne il funzionamento,
+ è utile fare riferimento al concetto più ampio di 
+\begin_inset Quotes eld
+\end_inset
+
+packet radio
+\begin_inset Quotes erd
+\end_inset
+
+,
+ che ne costituisce il paradigma operativo.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Packet radio
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Il packet radio è un modello di comunicazione dati che applica i principi del packet switching ai collegamenti radio.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Non è un protocollo specifico,
+ ma un approccio generale che prevede la suddivisione dell’informazione in pacchetti trasmessi in maniera asincrona e indipendente,
+ ciascuno contenente il proprio indirizzamento e i dati di controllo necessari.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Questo modello si contrappone alle trasmissioni a circuito continuo,
+ tipiche della fonia,
+ e consente la creazione di reti dinamiche,
+ decentralizzate e flessibili.
+\begin_inset Newline newline
+\end_inset
+
+In APRS,
+ l’utilizzo del packet radio consente a ogni stazione di trasmettere dati posizione,
+ messaggi,
+ oggetti,
+ bollettini in forma autonoma,
+ senza necessità di una connessione persistente.
+\begin_inset Newline newline
+\end_inset
+
+I pacchetti possono essere ricevuti da tutte le stazioni in ascolto e rilanciati da nodi intermedi detti digipeater,
+ che fungono da ripetitori intelligenti e permettono di estendere la portata della trasmissione.
+\begin_inset Newline newline
+\end_inset
+
+Il packet radio ha introdotto nella pratica radioamatoriale la possibilità di:
+\end_layout
+
+\begin_layout Itemize
+trasmettere dati digitali in modo affidabile su frequenze VHF/UHF o HF,
+\end_layout
+
+\begin_layout Itemize
+creare reti locali e regionali a partire da nodi autonomi,
+\end_layout
+
+\begin_layout Itemize
+integrare l’indirizzamento tramite call-sign radioamatoriale,
+\end_layout
+
+\begin_layout Itemize
+supportare scenari operativi come il tracciamento veicolare,
+ la messaggistica,
+ il monitoraggio meteorologico e l’interscambio automatico di dati.
+\end_layout
+
+\begin_layout Standard
+Il protocollo che implementa in modo concreto queste funzionalità nel livello dati è AX.25.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Protocollo AX.25
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Il protocollo AX.25 è l’implementazione effettiva del livello dati nello stack APRS.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Derivato dal protocollo X.25,
+ è stato adattato specificamente per l’uso radioamatoriale e si è affermato come standard per la trasmissione di pacchetti via radio in ambito radioamatoriale.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Esso definisce la struttura dei frame,
+ le regole di indirizzamento,
+ la gestione dei percorsi di ripetizione (path),
+ e i meccanismi di controllo d’errore.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Un frame AX.25 ha una struttura precisa,
+ composta dai seguenti campi principali:
+\end_layout
+
+\begin_layout Itemize
+Flag di inizio/fine (0x7E):
+ delimitano i bordi del pacchetto.
+\end_layout
+
+\begin_layout Itemize
+Indirizzi:
+ includono il call-sign del destinatario,
+ del mittente e di eventuali digipeater.
+ Ogni indirizzo è codificato in 7 byte,
+ comprendendo anche l’SSID e il bit di fine indirizzamento.
+\end_layout
+
+\begin_layout Itemize
+Campo di controllo:
+ definisce la tipologia del frame (informativo,
+ non numerato,
+ ecc.).
+\end_layout
+
+\begin_layout Itemize
+PID (Protocol Identifier):
+ specifica il protocollo superiore (per APRS è 0xF0).
+\end_layout
+
+\begin_layout Itemize
+Campo informativo:
+ contiene il payload vero e proprio,
+ come un messaggio APRS o un pacchetto di posizione.
+\end_layout
+
+\begin_layout Itemize
+FCS (Frame Check Sequence):
+ una sequenza CRC-16 per il rilevamento degli errori.
+\end_layout
+
+\begin_layout Standard
+Il pacchetto subisce ulteriori trasformazioni per l’invio:
+ viene incapsulato tra flag di delimitazione,
+ codificato secondo lo schema NRZI (Non-Return-to-Zero Inverted),
+ e infine trasmesso tramite modulazione AFSK.
+\begin_inset Newline newline
+\end_inset
+
+Nel caso specifico dell’APRS,
+ il frame AX.25 utilizzato è un U-frame (unnumbered frame) con PID 0xF0,
+ che indica una trasmissione non affidabile e non orientata alla connessione
+\begin_inset Newline newline
+\end_inset
+
+La struttura complessiva del frame è la seguente:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ax25_frame.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Struttura di un frame AX.25
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+AX.25 implementa il CSMA ed è p-persistente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename csma_p.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+CSMA p-persistente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+se è libero si trasmette subito con probabilità p,
+ oppure rimanda la trasmissione all'intervallo successivo con probabilità q=1-p,
+ se anche questo risultasse libero trasmette altrimenti rimanda,
+ se invece è occupato si comporta come una collisione e attende un intervallo di tempo casuale per poi ritrasmettere;
+\end_layout
+
+\begin_layout Itemize
+se è occupato fin dall'inizio attende fino all'intervallo successivo e si ripete l'algoritmo sopracitato;
+\end_layout
+
+\begin_layout Itemize
+se viene rivelata una collisione,
+ prima di ritentare la trasmissione,
+ si attende un intervallo di tempo casuale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Livello applicazione
+\end_layout
+
+\begin_layout Standard
+Il livello applicazione nello stack APRS si occupa dell'organizzazione e della gestione dei dati informativi scambiati attraverso la rete APRS.
+ Esso definisce il contenuto logico e il formato delle informazioni che vengono inserite nel campo payload dei pacchetti AX.25 utilizzati dal protocollo.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Formato generale dei pacchetti APRS
+\end_layout
+
+\begin_layout Standard
+I pacchetti APRS hanno la struttura generale seguente
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+CALLSIGN-SSID>DEST,PATH:payload
+\end_layout
+
+\end_inset
+
+dove:
+\end_layout
+
+\begin_layout Itemize
+CALLSIGN-SSID è il nominativo e il tipo della stazione trasmittente
+\end_layout
+
+\begin_layout Itemize
+DEST è tipicamente un identificativo generico utilizzato dal software APRS (ad esempio APRS)
+\end_layout
+
+\begin_layout Itemize
+PATH indica il percorso desiderato per l'instradamento tramite digipeater (ad esempio WIDE1-1,WIDE2-2)
+\end_layout
+
+\begin_layout Itemize
+payload contiene il contenuto informativo (posizione,
+ testo,
+ meteo,
+ ecc.)
+\end_layout
+
+\begin_layout Subsubsection
+SSID in APRS
+\end_layout
+
+\begin_layout Standard
+SSID sta per Secondary Station Identifier.
+ Serve a differenziare più dispositivi o ruoli legati allo stesso nominativo principale oppure a specificare che tipo e quale funzione svolge il dispositivo APRS.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float table
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+
+\size small
+\begin_inset Tabular
+<lyxtabular version="3" rows="17" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+SSID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Significato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione principale,
+ generalmente fissa
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione addizionale generica,
+ digi,
+ mobile,
+ meteo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione addizionale generica,
+ digi,
+ mobile,
+ meteo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione addizionale generica,
+ digi,
+ mobile,
+ meteo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione addizionale generica,
+ digi,
+ mobile,
+ meteo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Altre reti (Dstar,
+ Iphones,
+ Androids,
+ Blackberry’s)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Attività speciale,
+ operazioni via satellite,
+ camping,
+ banda 6 metri
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Portatile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Barca o seconda stazione mobile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione mobile principale
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Internet,
+ Igates,
+ echolink,
+ winlink,
+ AVRS,
+ APRN
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Pallone,
+ aereo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Tracker
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione meteo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Autocarri,
+ Camion
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+-15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione addizionale generica,
+ digi,
+ mobile,
+ meteo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tabella codici SSID APRS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+
+\size small
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Nominativo - SSID
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Significato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IZ6NNH-0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione base / generica
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IZ6NNH-1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Stazione fissa secondaria
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IZ6NNH-7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+PDA / palmare / tablet
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IZ6NNH-9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Mobile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IZ6NNH-11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+APRS via computer
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IZ6NNH-13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Quotes eld
+\end_inset
+
+WX station
+\begin_inset Quotes erd
+\end_inset
+
+ stazione meteo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+IZ6NNH-14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+Tracker portatile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esempio di uso dell'SSID APRS con il mio nominativo IZ6NNH
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Tipi di dato
+\end_layout
+
+\begin_layout Standard
+I principali tipi di dati definiti dal livello applicazione APRS sono:
+\end_layout
+
+\begin_layout Itemize
+Posizioni geografiche
+\end_layout
+
+\begin_layout Itemize
+Messaggi testuali
+\end_layout
+
+\begin_layout Itemize
+Oggetti e simboli
+\end_layout
+
+\begin_layout Itemize
+Dati meteorologici
+\end_layout
+
+\begin_layout Itemize
+Bollettini o annunci generali
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Posizioni geografiche
+\series default
+ 
+\begin_inset Newline newline
+\end_inset
+
+Informazioni sulla localizzazione geografica della stazione,
+ espresse generalmente in coordinate di latitudine e longitudine.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Queste informazioni provengono tipicamente da ricevitori GPS integrati o collegati al sistema APRS.
+\begin_inset Newline newline
+\end_inset
+
+Esempio di pacchetto posizione
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+IZ6NNH-9>APRS,WIDE1-1,WIDE2-2:!4254.66N/01341.77E>000/000/A=000123
+\end_layout
+
+\end_inset
+
+dove:
+\end_layout
+
+\begin_layout Itemize
+4254.66N e 01341.77E indicano latitudine e longitudine della stazione IZ6NNH-9
+\end_layout
+
+\begin_layout Itemize
+000/000 indicano direzione e velocità del movimento (0°/0 nodi)
+\end_layout
+
+\begin_layout Itemize
+A=000123 indica l'altitudine in piedi
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Messaggi testuali
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Brevi messaggi testuali scambiati direttamente tra due stazioni APRS,
+ con possibilità opzionale di conferma di ricezione.
+\begin_inset Newline newline
+\end_inset
+
+Esempio di pacchetto messaggio
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+IZ6NNH-9>APRS::IR6A     :Test messaggio APRS{001
+\end_layout
+
+\end_inset
+
+dove:
+\end_layout
+
+\begin_layout Itemize
+IR6A indica la stazione destinataria del messaggio
+\end_layout
+
+\begin_layout Itemize
+"Test messaggio APRS" è il contenuto testuale
+\end_layout
+
+\begin_layout Itemize
+{001 è un identificativo sequenziale che può essere utilizzato per conferma di ricezione
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Oggetti e simboli
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Sono pacchetti utilizzati per rappresentare specifici elementi sulla rete APRS,
+ come veicoli,
+ stazioni meteo,
+ punti d'interesse,
+ situazioni di emergenza o altre entità identificabili tramite simboli grafici definiti dal protocollo APRS.
+\begin_inset Newline newline
+\end_inset
+
+Esempio di pacchetto simbolo
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+IZ6NNH-0>APRS:;PUNTO01  *111111z4254.66N/01341.77E-Test oggetto
+\end_layout
+
+\end_inset
+
+dove:
+\end_layout
+
+\begin_layout Itemize
+;PUNTO01 definisce il nome dell'oggetto 
+\end_layout
+
+\begin_layout Itemize
+* indica che l'oggetto è attivo
+\end_layout
+
+\begin_layout Itemize
+111111z è l'orario UTC di creazione o aggiornamento dell'oggetto
+\end_layout
+
+\begin_layout Itemize
+Coordinate e testo forniscono posizione e descrizione
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Dati meteorologici
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Dati generati da stazioni meteorologiche automatiche APRS,
+ che includono valori come temperatura,
+ umidità,
+ pressione atmosferica,
+ velocità e direzione del vento,
+ e quantità di precipitazioni.
+\begin_inset Newline newline
+\end_inset
+
+Esempio di pacchetto meteo
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+IZ6NNH-13>APRS:@111111z4254.66N/01341.77E_180/005g010t020r000p000P000h50b10150
+\end_layout
+
+\end_inset
+
+dove:
+\end_layout
+
+\begin_layout Itemize
+180/005 indica direzione e velocità media del vento (180°,
+ 5 nodi)
+\end_layout
+
+\begin_layout Itemize
+g010 è la velocità delle raffiche di vento (10 nodi)
+\end_layout
+
+\begin_layout Itemize
+t020 indica la temperatura (20 °C)
+\end_layout
+
+\begin_layout Itemize
+r000,
+ p000,
+ P000 sono le precipitazioni
+\end_layout
+
+\begin_layout Itemize
+h50 indica l'umidità relativa (50%)
+\end_layout
+
+\begin_layout Itemize
+b10150 è la pressione atmosferica (1015.0 hPa)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Bollettini e annunci generali
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Messaggi inviati a tutte le stazioni in ascolto,
+ utilizzati per fornire comunicazioni di carattere generale o avvisi operativi.
+\begin_inset Newline newline
+\end_inset
+
+Esempio
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+IZ6NNH-0>APRS::BLN1     :Evento APRS oggi ore 17:00 presso sede ARI.
+\end_layout
+
+\end_inset
+
+dove:
+\end_layout
+
+\begin_layout Itemize
+BLN1 indica un bollettino numerato.
+\end_layout
+
+\begin_layout Itemize
+Il testo seguente contiene l'annuncio generale.
+\end_layout
+
+\begin_layout Chapter
+Parte pratica
+\end_layout
+
+\begin_layout Section
+Realizzazione di una stazione APRS con Direwolf
+\end_layout
+
+\begin_layout Section
+Realizzazione di un digipeater con Raspberry Pi 3 B
+\end_layout
+
+\begin_layout Section
+Interfacciamento via socket con Direwolf
+\end_layout
+
+\begin_layout Section
+Esperimenti di invio e ricezione di pacchetti e analisi
+\end_layout
+
+\begin_layout Section
+Considerazioni finali e sviluppi futuri
+\end_layout
+
+\end_body
+\end_document
