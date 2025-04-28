@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>APRS Mappa in tempo reale</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    #map { height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    // Icone per i vari SSID
+    const ssidIcons = {
+      "0": "icons/home.png",
+      "1": "icons/digipeater.png",
+      "3": "icons/car.png",
+      "5": "icons/igate.png",
+      "6": "icons/weather.png",
+      "9": "icons/vehicle.png",
+      "14": "icons/truck.png",
+      "default": "icons/default.png"
+    };
+
+    // Inizializzazione mappa
+    const map = L.map('map').setView([44.0, 11.5], 6);
+    L.tileLayer('/geo/{z}/{x}/{y}.png', {
+      minZoom: 8,
+      maxZoom: 12,
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Gestione dei marker e del tracking
+    let markers = {};
+    let trackedStations = {};
+
+    // Funzione per scegliere l'icona in base all'SSID
+    function getIcon(ssid) {
+      const iconUrl = ssidIcons[ssid] || ssidIcons["default"];
+      return L.icon({
+        iconUrl: iconUrl,
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+    }
+
+    // Converte il timestamp (in secondi) in formato hh:mm (locale)
+    function formatTime(ts) {
+      let d = new Date(ts * 1000);
+      return d.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    // Converte un valore decimale in DMS (gradi, primi, secondi) e restituisce la stringa con N/S/E/W
+    function decimalToDMS(value, isLat = true) {
+      // Determina il simbolo cardinale
+      const cardinal = isLat
+        ? (value >= 0 ? 'N' : 'S')
+        : (value >= 0 ? 'E' : 'W');
+
+      const absValue = Math.abs(value);
+      const degrees = Math.floor(absValue);
+      const minutesFloat = (absValue - degrees) * 60;
+      const minutes = Math.floor(minutesFloat);
+      const seconds = ((minutesFloat - minutes) * 60).toFixed(2);
+
+      return `${degrees}° ${minutes}' ${seconds}" ${cardinal}`;
+    }
+
+    // Genera il contenuto del popup per un marker
+    function updatePopupContent(callsign, pos) {
+      let timeStr = formatTime(pos.timestamp);
+
+      // Converte lat/lon in DMS
+      let latDMS = decimalToDMS(pos.lat, true);
+      let lonDMS = decimalToDMS(pos.lon, false);
+
+      // Coordinate in formato "incollabile" per G-Maps (decimal degrees)
+      // Puoi regolare il numero di decimali con .toFixed(n)
+      let latGMaps = pos.lat.toFixed(6);
+      let lonGMaps = pos.lon.toFixed(6);
+
+      // Verifica se la stazione è in tracking
+      let isTracked = trackedStations.hasOwnProperty(callsign);
+      let checked = isTracked ? "checked" : "";
+
+      return `
+        <strong>${callsign}</strong><br>
+        Lat: ${latDMS}<br>
+        Lon: ${lonDMS}<br>
+        Formato G-Maps: ${latGMaps},${lonGMaps}<br>
+        Ultimo segnale: ${timeStr}<br>
+        <label><input type="checkbox" onchange="toggleTracking('${callsign}', this.checked)" ${checked}> Traccia</label>
+      `;
+    }
+
+    // Attiva o disattiva il tracking per un determinato callsign
+    function toggleTracking(callsign, isTracking) {
+      if (isTracking) {
+        if (!trackedStations[callsign]) {
+          let marker = markers[callsign];
+          if (marker) {
+            let latlng = marker.getLatLng();
+            let polyline = L.polyline([latlng], { color: 'blue' }).addTo(map);
+            trackedStations[callsign] = { polyline: polyline, positions: [latlng] };
+          }
+        }
+      } else {
+        if (trackedStations[callsign]) {
+          // Rimuove la polyline dal layer e cancella la traccia
+          map.removeLayer(trackedStations[callsign].polyline);
+          delete trackedStations[callsign];
+        }
+      }
+    }
+
+    // Aggiorna la mappa con le posizioni in realtime e gestisce il tracking
+    async function updateMap() {
+      const res = await fetch('/positions.json');
+      const data = await res.json();
+
+      for (const [callsign, pos] of Object.entries(data)) {
+        // Se esiste già un marker, aggiorniamo la posizione e il popup
+        if (markers[callsign]) {
+          markers[callsign].setLatLng([pos.lat, pos.lon]);
+          if (markers[callsign].isPopupOpen()) {
+            markers[callsign].setPopupContent(updatePopupContent(callsign, pos));
+          }
+        } else {
+          // Crea un nuovo marker
+          let marker = L.marker([pos.lat, pos.lon], { icon: getIcon(pos.ssid) }).addTo(map);
+          marker.bindPopup(updatePopupContent(callsign, pos));
+          markers[callsign] = marker;
+
+          // Quando si clicca sul marker, ricarichiamo il contenuto (aggiorniamo data e checkbox)
+          marker.on('click', function() {
+            marker.setPopupContent(updatePopupContent(callsign, pos));
+          });
+        }
+
+        // Se il callsign è in tracking, aggiunge il nuovo punto alla polyline
+        if (trackedStations[callsign]) {
+          let latlng = markers[callsign].getLatLng();
+          let positions = trackedStations[callsign].positions;
+          let lastPoint = positions[positions.length - 1];
+          // Aggiunge il punto solo se è diverso dall'ultimo
+          if (!lastPoint || lastPoint.lat !== latlng.lat || lastPoint.lng !== latlng.lng) {
+            positions.push(latlng);
+            trackedStations[callsign].polyline.setLatLngs(positions);
+          }
+        }
+      }
+    }
+
+    // Aggiorna ogni 5 secondi
+    setInterval(updateMap, 5000);
+    updateMap();
+  </script>
+</body>
+</html>
