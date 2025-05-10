@@ -18,9 +18,9 @@ def main():
     # Latitudine: 43°56.22'N, Longitudine: 012°46.12'E con simbolo ">" (veicolo)
     gps_info = "!4356.22N/01246.12E>"
     frame = Frame.ui(
-        destination="IZ6NNH-0",
+        destination="APRS",
         source=MYCALL,
-        path=["WIDE3-3"],
+        path=["WIDE1-1"],
         info=gps_info,
     )
     ki.write(frame)

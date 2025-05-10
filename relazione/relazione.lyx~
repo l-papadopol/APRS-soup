@@ -15,7 +15,7 @@
 \font_sans "default" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
-\font_default_family default
+\font_default_family sfdefault
 \use_non_tex_fonts false
 \font_sc false
 \font_roman_osf false
@@ -3772,26 +3772,42 @@ Parte pratica
 \end_layout
 
 \begin_layout Section
-Realizzazione di una stazione APRS con Direwolf
-\end_layout
-
-\begin_layout Subsection
-Configurazione Software
+Realizzazione di una stazione APRS sperimentale
 \end_layout
 
 \begin_layout Standard
-L'ambiente software utilizzato è stato il sistema operativo Linux Ubuntu 24.04,
+Ho deciso di iniziare a sperimentare la rete APRS e ad accedervi dal mio studio di casa.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ciò ha comportato l’acquisizione o la realizzazione e la successiva installazione dell’hardware necessario:
+ antenne,
+ cavi coassiali,
+ ricetrasmettitore e interfaccia radio-PC.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Inoltre,
+ avendo già trattato nella parte teorica di questo lavoro i TNC software,
+ in particolare Direwolf,
+ ne ho compilato il codice e installato il programma sul mio PC Linux.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Di seguito descrivo nel dettaglio le componenti hardware e software.
+\end_layout
+
+\begin_layout Subsection
+Il software
+\end_layout
+
+\begin_layout Standard
+L'ambiente software utilizzato è il sistema operativo Linux Ubuntu 24.04,
  installato su un computer portatile.
  
-\begin_inset Newline newline
-\end_inset
-
-Per il software di gestione APRS è stato scelto Direwolf che è un TNC software open-source e che implementa il protocollo AX.25 ed anche la codifica/decodifica APRS.
- 
-\begin_inset Newline newline
-\end_inset
-
-
 \begin_inset Newline newline
 \end_inset
 
@@ -3818,7 +3834,7 @@ La configurazione successiva è stata svolta tramite il file direwolf.conf.
 Questo file è stato modificato minimamente,
  inserendo esclusivamente il nominativo personale IZ6NNH,
  indicando correttamente la sorgente audio di ingresso e uscita,
- e impostando il metodo di controllo della linea PTT tramite il segnale RTS della porta seriale utilizzata per la comunicazione CAT.
+ e impostando il metodo di controllo della linea PTT (quella che manda in trasmissione la radio) tramite il segnale RTS della porta seriale utilizzata per la comunicazione CAT.
 \begin_inset Newline newline
 \end_inset
 
@@ -3839,7 +3855,7 @@ Inoltre,
 \end_layout
 
 \begin_layout Subsection
-Configurazione Hardware
+L'hardware
 \end_layout
 
 \begin_layout Standard
@@ -3852,14 +3868,15 @@ Ricetrasmettitore Kenwood TS-790S
 \end_inset
 
 Per la sezione radio è stato utilizzato un ricetrasmettitore Kenwood TS-790S,
- un apparato multimodo progettato per operare prevalentemente nelle bande VHF/UHF dei 2m (144Mhz),
- 70cm (432Mhz),
- 23cm(1296Mhz) e caratterizzato da elevate prestazioni e versatilità operativa.
+ un apparato multimodo progettato per operare prevalentemente nelle bande VHF/UHF dei 144Mhz,
+ 432Mhz e 1296Mhz,
+ caratterizzato da elevate prestazioni in ricezione ed una potenza di uscita RF di 50W a 144Mhz.
  
 \begin_inset Newline newline
 \end_inset
 
-Questo apparato è dotato di interfaccia CAT (Computer Aided Transceiver) per la gestione automatizzata delle frequenze e modalità operative.
+Questo apparato è dotato di interfaccia CAT acronimo di Computer Aided Transceiver,
+ per la gestione automatizzata delle frequenze e modalità operative.
  
 \begin_inset Newline newline
 \end_inset
@@ -3902,7 +3919,7 @@ Stazione radio con Kenwood TS790E in cima,
 È stato scelto proprio per la sua precisione e stabilità in frequenza,
  essenziali nelle comunicazioni digitali,
  nonché per la facilità di integrazione con il sistema informatico tramite la porta seriale CAT,
- oltre al fatto fondamentale che ho solo questa radio disponibile.
+ oltre al fatto fondamentale che avevo solo questa radio disponibile.
 \begin_inset Newline newline
 \end_inset
 
@@ -4029,7 +4046,7 @@ disponibile sul sito del radioamatore DG7YBN.
 \end_inset
 
 Questa antenna,
- progettata originariamente per attività EME (Earth-Moon-Earth),
+ progettata originariamente per attività EME acronimo di Earth-Moon-Earth,
  presenta un guadagno dichiarato di 13 dBd con angoli di apertura del fascio di 37° sul piano orizzontale e 34° sul piano verticale.
 \begin_inset Newline newline
 \end_inset
@@ -4045,7 +4062,7 @@ status collapsed
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename antenna.jpg
-	scale 15
+	scale 12
 
 \end_inset
 
@@ -4079,11 +4096,27 @@ L'antenna è installata su un rotore Yaesu G-450,
 \end_inset
 
 
-\series bold
+\begin_inset Newline newline
+\end_inset
+
 
 \begin_inset Newline newline
 \end_inset
 
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
 Test Operativo
 \begin_inset Newline newline
 \end_inset
@@ -4108,20 +4141,1047 @@ Al primo avvio di Direwolf,
 La visualizzazione dei pacchetti APRS in tempo reale nella finestra del software ha rappresentato una prova immediata e convincente della corretta funzionalità sia del sistema hardware che della configurazione software adottata.
 \end_layout
 
-\begin_layout Section
-Realizzazione di un digipeater con Raspberry Pi 3 B
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename first_rx.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+I primi pacchetti APRS ricevuti 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Questo risultato iniziale conferma l'operatività del sistema,
+ permettendomi quindi di passare oltre ovvero sperimentare con la ricezione ed invio di pacchetti APRS via software scritto da me.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Interfacciamento via socket con Direwolf
 \end_layout
 
-\begin_layout Section
-Esperimenti di invio e ricezione di pacchetti e analisi
+\begin_layout Standard
+Ho implementato alcuni script Python che si interfacciano con Direwolf sulla sua porta TCP 8001 per inviare e ricevere pacchetti APRS.
+ Gli script in questione sono quattro:
+\end_layout
+
+\begin_layout Itemize
+aprs_sender.py
+\end_layout
+
+\begin_layout Itemize
+aprs_decoder.py
+\end_layout
+
+\begin_layout Itemize
+aprs_sender_GPS.py
+\end_layout
+
+\begin_layout Itemize
+aprs_decoder_GPS.py
+\end_layout
+
+\begin_layout Standard
+Per questione di spazio mi limiterò a trattare solo aprs_sender.py e aprs_decoder_GPS.py che ritengo essere esempi significativi poichè il primo è un esempio chiaro di come inviare un pacchetto APRS mentre il secondo permette di ricavare la posizione GPS dai pacchetti APRS ricevuti che è la 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ di una tipica applicazione APRS desktop.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Prima però bisogna specificare che tipo di protocollo usa Direwolf per dialogare con le applicazioni tramite la porta 8001 TCP.
+\end_layout
+
+\begin_layout Subsection
+Il framing KISS di Direwolf e socket TCP
+\end_layout
+
+\begin_layout Standard
+All’avvio,
+ Direwolf crea un’interfaccia di comunicazione basata su socket e protocollo TCP,
+ rendendo disponibile un servizio di scambio dei pacchetti APRS incapsulati in frame di tipo KISS,
+ separato dall’elaborazione audio.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il funzionamento di questo meccanismo può essere descritto in tre fasi principali:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Apertura della porta TCP 8001.
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Quando viene lanciato,
+ Direwolf esegue le chiamate di sistema necessarie per creare un socket TCP in ascolto sulla porta 8001 del sistema locale.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Attesa di connessioni da altre applicazioni
+\series default
+.
+\begin_inset Newline newline
+\end_inset
+
+Dopo aver messo il socket in ascolto,
+ Direwolf rimane in attesa di richieste di connessione da parte di client esterni.
+\begin_inset Newline newline
+\end_inset
+
+Qualsiasi applicazione in esecuzione sulla stessa macchina o,
+ se configurato diversamente,
+ anche da remoto può aprire una connessione TCP verso 127.0.0.1:8001 o l’indirizzo IP scelto.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Scambio di frame KISS.
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Le applicazioni client che si connettono sulla porta 8001 dialogano con Direwolf utilizzando il protocollo KISS acronimo per Keep It Simple,
+ Stupid.
+\end_layout
+
+\begin_layout Standard
+Lo studio e la trattazione del protocollo di framing KISS esula dalla mia ricerca poichè specifico del software Direwolf e non della rete APRS.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ciò implica che ho utilizzato una libreria pyton specifica per gestire il protocollo KISS.
+\end_layout
+
+\begin_layout Subsection
+Ambiente di sviluppo e librerie
+\end_layout
+
+\begin_layout Standard
+Inizialmente mi sono ispirato agli esempi di programmazione socket in Python forniti dal professore Della Selva,
+ scrivendo codice che mi permettesse di stabilire una connessione TCP a Direwolf e di recuperare i frame KISS.
+\begin_inset Newline newline
+\end_inset
+
+Successivamente ho provato a gestire direttamente il framing KISS per estrarne il pacchetto APRS ma,
+ ho scoperto l'esistenza di una libreria Python dedicata appunto al framing KISS che ha notevolmente semplificato sia il mio lavoro sia il codice.
+\begin_inset Newline newline
+\end_inset
+
+Infine ho sviluppato i miei script per Python 3 avvalendomi delle librerie 
+\shape italic
+
+\begin_inset Quotes eld
+\end_inset
+
+ax253
+\begin_inset Quotes erd
+\end_inset
+
+
+\shape default
+ per la gestione dei frame AX.25 e 
+\shape italic
+
+\begin_inset Quotes eld
+\end_inset
+
+kiss
+\shape default
+
+\begin_inset Quotes erd
+\end_inset
+
+ per il framing KISS.
+\end_layout
+
+\begin_layout Subsection
+Invio di un messaggio - aprs_sender.py
+\end_layout
+
+\begin_layout Standard
+In questo primo test vogliamo inviare un semplice pacchetto verso la rete APRS contenente un generico messaggio di saluto.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Dopo l’invio,
+ osservando la finestra di Direwolf dedicata ai pacchetti ricevuti/trasmessi,
+ ci aspettiamo di vedere lo stesso messaggio ripetuto dai digipeater.
+\begin_inset Newline newline
+\end_inset
+
+Mi aspetto di vedere nella finestra di Direwolf qualcosa come:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Trasmesso:
+ IZ6NNH>IR6A,WIDE1-1,WIDE2-2:>Test invio APRS via KISS3 + Python
+\end_layout
+
+\begin_layout Plain Layout
+
+Ricevuto:
+  IZ6NNH>IR6A,IR6A*,WIDE2-2:>Test invio APRS via KISS3 + Python
+\end_layout
+
+\end_inset
+
+Il messaggio che trasmetto è 
+\begin_inset Quotes eld
+\end_inset
+
+test invio APRS via KISS3 + Python
+\begin_inset Quotes erd
+\end_inset
+
+,
+ specifico il mio nominativo IZ6NNH,
+ specifico come destinatario IR6A che è un digipeater e specifico anche due path di digipeating ovvero WIDE1-1 e WIDE2-2.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Il listato dello script è il seguente:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=Python,basicstyle={\scriptsize}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python3
+\end_layout
+
+\begin_layout Plain Layout
+
+"""
+\end_layout
+
+\begin_layout Plain Layout
+
+Invia un frame KISS via TCP per essere trasmesso e ripetuto.
+\end_layout
+
+\begin_layout Plain Layout
+
+"""
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+from ax253 import Frame
+\end_layout
+
+\begin_layout Plain Layout
+
+import kiss
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+MYCALL = os.environ.get("MYCALL",
+ "IZ6NNH")
+\end_layout
+
+\begin_layout Plain Layout
+
+KISS_HOST = os.environ.get("KISS_HOST",
+ "localhost")
+\end_layout
+
+\begin_layout Plain Layout
+
+KISS_PORT = os.environ.get("KISS_PORT",
+ "8001")
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main():
+\end_layout
+
+\begin_layout Plain Layout
+
+    ki = kiss.TCPKISS(host=KISS_HOST,
+ port=int(KISS_PORT),
+ strip_df_start=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+    ki.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+    frame = Frame.ui(
+\end_layout
+
+\begin_layout Plain Layout
+
+        destination="IR6A",
+\end_layout
+
+\begin_layout Plain Layout
+
+        source=MYCALL,
+\end_layout
+
+\begin_layout Plain Layout
+
+        path=["WIDE1-1,WIDE2-2"],
+\end_layout
+
+\begin_layout Plain Layout
+
+        info=">Test invio APRS via KISS3 + Python",
+\end_layout
+
+\begin_layout Plain Layout
+
+    )
+\end_layout
+
+\begin_layout Plain Layout
+
+    ki.write(frame)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == "__main__":
+\end_layout
+
+\begin_layout Plain Layout
+
+    main()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nell'immagine sottostante si possono vedere i frame grezzi APRS ricevuti in verde,
+ trasmessi in rosa e ricevuti e decodificati in formato leggibile da Direwolf in blu.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename prima_prova_TX.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prima prova di trasmissione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ricezione e decodifica di una posizione GPS - aprs_decoder_GPS.py
+\end_layout
+
+\begin_layout Standard
+Con questo script ho combinato varie funzionalità non trivali che utilizzerò successivamente per sviluppare una web application con backend Python + Flask:
+\end_layout
+
+\begin_layout Enumerate
+Deframing KISS.
+\end_layout
+
+\begin_layout Enumerate
+Deframing AX.25 ovvero estrazione del payload APRS.
+\end_layout
+
+\begin_layout Enumerate
+Estrazione coordinate GPS dal pacchetto APRS e stampa di debug in formato 
+\shape italic
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Quotes eld
+\end_inset
+
+{mittente} > POSIZIONE:
+ {latitudine} {longitudine}
+\begin_inset Quotes erd
+\end_inset
+
+
+\shape default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=Python,basicstyle={\scriptsize}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/usr/bin/env python3
+\end_layout
+
+\begin_layout Plain Layout
+
+"""
+\end_layout
+
+\begin_layout Plain Layout
+
+Legge frame KISS da un socket TCP e stampa,
+ per i pacchetti APRS di posizione,
+\end_layout
+
+\begin_layout Plain Layout
+
+la riga:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    NOMINATIVO > POSIZIONE:
+ lat long
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+- Riconosce un eventuale simbolo introduttore (!,
+ =,
+ /,
+ @)
+\end_layout
+
+\begin_layout Plain Layout
+
+- Gestisce un timestamp zulu opzionale (hhmmssz) subito dopo l’introduttore
+\end_layout
+
+\begin_layout Plain Layout
+
+- Accetta sia 
+\begin_inset Quotes eld
+\end_inset
+
+/
+\begin_inset Quotes erd
+\end_inset
+
+ che 
+\begin_inset Quotes eld
+\end_inset
+
+
+\backslash
+
+\backslash
+
+\begin_inset Quotes erd
+\end_inset
+
+ come separatore lat/lon
+\end_layout
+
+\begin_layout Plain Layout
+
+- Formato delle coordinate:
+ DDMM.mmN/DDDMM.mmE
+\end_layout
+
+\begin_layout Plain Layout
+
+"""
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+import os
+\end_layout
+
+\begin_layout Plain Layout
+
+import re
+\end_layout
+
+\begin_layout Plain Layout
+
+from ax253 import Frame
+\end_layout
+
+\begin_layout Plain Layout
+
+import kiss
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+KISS_HOST = os.environ.get("KISS_HOST",
+ "localhost")
+\end_layout
+
+\begin_layout Plain Layout
+
+KISS_PORT = int(os.environ.get("KISS_PORT",
+ "8001"))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Regex per estrarre coordinate
+\end_layout
+
+\begin_layout Plain Layout
+
+POSITION_RE = re.compile(
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?:[!=/@])?'                 # uso futuro?
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?:
+\backslash
+d{6}z)?'                 # timestamp zulu (hhmmssz) uso futuro?
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?P<lat_deg>
+\backslash
+d{2})'
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?P<lat_min>
+\backslash
+d{2}
+\backslash
+.
+\backslash
+d{2})'
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?P<lat_dir>[NS])'
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'[/
+\backslash
+
+\backslash
+]'
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?P<lon_deg>
+\backslash
+d{3})'
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?P<lon_min>
+\backslash
+d{2}
+\backslash
+.
+\backslash
+d{2})'
+\end_layout
+
+\begin_layout Plain Layout
+
+    r'(?P<lon_dir>[EW])'
+\end_layout
+
+\begin_layout Plain Layout
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def extract_source(aprs_msg:
+ str) -> str | None:
+\end_layout
+
+\begin_layout Plain Layout
+
+    """Restituisce il nominativo (campo source) dal messaggio APRS."""
+\end_layout
+
+\begin_layout Plain Layout
+
+    return aprs_msg.split('>',
+ 1)[0] if '>' in aprs_msg else None
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def parse_position(aprs_msg:
+ str) -> tuple[float | None,
+ float | None]:
+\end_layout
+
+\begin_layout Plain Layout
+
+    """Estrae latitudine e longitudine (gradi decimali) dal messaggio APRS."""
+\end_layout
+
+\begin_layout Plain Layout
+
+    match = POSITION_RE.search(aprs_msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+    if not match:
+\end_layout
+
+\begin_layout Plain Layout
+
+        return None,
+ None
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    try:
+\end_layout
+
+\begin_layout Plain Layout
+
+        lat_deg = int(match.group("lat_deg"))
+\end_layout
+
+\begin_layout Plain Layout
+
+        lat_min = float(match.group("lat_min"))
+\end_layout
+
+\begin_layout Plain Layout
+
+        latitude = lat_deg + lat_min / 60
+\end_layout
+
+\begin_layout Plain Layout
+
+        if match.group("lat_dir") == "S":
+\end_layout
+
+\begin_layout Plain Layout
+
+            latitude = -latitude
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        lon_deg = int(match.group("lon_deg"))
+\end_layout
+
+\begin_layout Plain Layout
+
+        lon_min = float(match.group("lon_min"))
+\end_layout
+
+\begin_layout Plain Layout
+
+        longitude = lon_deg + lon_min / 60
+\end_layout
+
+\begin_layout Plain Layout
+
+        if match.group("lon_dir") == "W":
+\end_layout
+
+\begin_layout Plain Layout
+
+            longitude = -longitude
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        return latitude,
+ longitude
+\end_layout
+
+\begin_layout Plain Layout
+
+    except (ValueError,
+ TypeError):
+\end_layout
+
+\begin_layout Plain Layout
+
+        return None,
+ None
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def handle_frame(raw_frame:
+ bytes) -> None:
+\end_layout
+
+\begin_layout Plain Layout
+
+    """Callback per kiss.TCPKISS.read:
+ deframma,
+ estrae e stampa la posizione."""
+\end_layout
+
+\begin_layout Plain Layout
+
+    frame = Frame.from_bytes(raw_frame)
+\end_layout
+
+\begin_layout Plain Layout
+
+    aprs_msg = str(frame)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    source = extract_source(aprs_msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+    latitude,
+ longitude = parse_position(aprs_msg)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    if source and latitude is not None and longitude is not None:
+\end_layout
+
+\begin_layout Plain Layout
+
+        print(f"{source} > POSIZIONE:
+ {latitude:.5f} {longitude:.5f}")
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+def main() -> None:
+\end_layout
+
+\begin_layout Plain Layout
+
+    """Apre la sessione KISS/TCP e resta in ascolto finchè non riceve Ctrl-C."""
+\end_layout
+
+\begin_layout Plain Layout
+
+    ki = kiss.TCPKISS(host=KISS_HOST,
+ port=KISS_PORT,
+ strip_df_start=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+    ki.start()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    try:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ki.read(callback=handle_frame)  # ciclo continuo
+\end_layout
+
+\begin_layout Plain Layout
+
+    except KeyboardInterrupt:
+\end_layout
+
+\begin_layout Plain Layout
+
+        pass
+\end_layout
+
+\begin_layout Plain Layout
+
+    finally:
+\end_layout
+
+\begin_layout Plain Layout
+
+        ki.stop()
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if __name__ == "__main__":
+\end_layout
+
+\begin_layout Plain Layout
+
+    main()
+\end_layout
+
+\end_inset
+
+Il risultato dell'esecuzione di questo script è il seguente:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename terza_prova_RX_GPS.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ricezione coordinate GPS
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Considerazioni finali e sviluppi futuri
+Realizzazione di un digipeater con Raspberry Pi 3 B
+\end_layout
+
+\begin_layout Section
+APRS-soup
 \end_layout
 
 \end_body

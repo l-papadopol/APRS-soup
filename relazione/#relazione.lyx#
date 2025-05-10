@@ -15,7 +15,7 @@
 \font_sans "default" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
-\font_default_family sfdefault
+\font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_roman_osf false
@@ -4096,27 +4096,11 @@ L'antenna è installata su un rotore Yaesu G-450,
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
 \series bold
+
+\begin_inset Newline newline
+\end_inset
+
 Test Operativo
 \begin_inset Newline newline
 \end_inset
@@ -4180,10 +4164,6 @@ I primi pacchetti APRS ricevuti
 
 Questo risultato iniziale conferma l'operatività del sistema,
  permettendomi quindi di passare oltre ovvero sperimentare con la ricezione ed invio di pacchetti APRS via software scritto da me.
-\begin_inset Newpage pagebreak
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -4192,7 +4172,10 @@ Interfacciamento via socket con Direwolf
 
 \begin_layout Standard
 Ho implementato alcuni script Python che si interfacciano con Direwolf sulla sua porta TCP 8001 per inviare e ricevere pacchetti APRS.
- Gli script in questione sono quattro:
+\begin_inset Newline newline
+\end_inset
+
+Gli script in questione sono quattro:
 \end_layout
 
 \begin_layout Itemize
@@ -4554,7 +4537,7 @@ placement H
 alignment document
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -4594,7 +4577,7 @@ Ricezione e decodifica di una posizione GPS - aprs_decoder_GPS.py
 \end_layout
 
 \begin_layout Standard
-Con questo script ho combinato varie funzionalità non trivali che utilizzerò successivamente per sviluppare una web application con backend Python + Flask:
+Con questo script ho combinato varie funzionalità non trivali che utilizzerò successivamente per sviluppare una web application con front-end Python:
 \end_layout
 
 \begin_layout Enumerate
@@ -4609,10 +4592,6 @@ Deframing AX.25 ovvero estrazione del payload APRS.
 Estrazione coordinate GPS dal pacchetto APRS e stampa di debug in formato 
 \shape italic
 
-\begin_inset Newline newline
-\end_inset
-
-
 \begin_inset Quotes eld
 \end_inset
 
@@ -4624,560 +4603,6 @@ Estrazione coordinate GPS dal pacchetto APRS e stampa di debug in formato
 
 \shape default
 .
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-lstparams "language=Python,basicstyle={\scriptsize}"
-inline false
-status open
-
-\begin_layout Plain Layout
-
-#!/usr/bin/env python3
-\end_layout
-
-\begin_layout Plain Layout
-
-"""
-\end_layout
-
-\begin_layout Plain Layout
-
-Legge frame KISS da un socket TCP e stampa,
- per i pacchetti APRS di posizione,
-\end_layout
-
-\begin_layout Plain Layout
-
-la riga:
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    NOMINATIVO > POSIZIONE:
- lat long
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-- Riconosce un eventuale simbolo introduttore (!,
- =,
- /,
- @)
-\end_layout
-
-\begin_layout Plain Layout
-
-- Gestisce un timestamp zulu opzionale (hhmmssz) subito dopo l’introduttore
-\end_layout
-
-\begin_layout Plain Layout
-
-- Accetta sia 
-\begin_inset Quotes eld
-\end_inset
-
-/
-\begin_inset Quotes erd
-\end_inset
-
- che 
-\begin_inset Quotes eld
-\end_inset
-
-
-\backslash
-
-\backslash
-
-\begin_inset Quotes erd
-\end_inset
-
- come separatore lat/lon
-\end_layout
-
-\begin_layout Plain Layout
-
-- Formato delle coordinate:
- DDMM.mmN/DDDMM.mmE
-\end_layout
-
-\begin_layout Plain Layout
-
-"""
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-import os
-\end_layout
-
-\begin_layout Plain Layout
-
-import re
-\end_layout
-
-\begin_layout Plain Layout
-
-from ax253 import Frame
-\end_layout
-
-\begin_layout Plain Layout
-
-import kiss
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-KISS_HOST = os.environ.get("KISS_HOST",
- "localhost")
-\end_layout
-
-\begin_layout Plain Layout
-
-KISS_PORT = int(os.environ.get("KISS_PORT",
- "8001"))
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Regex per estrarre coordinate
-\end_layout
-
-\begin_layout Plain Layout
-
-POSITION_RE = re.compile(
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?:[!=/@])?'                 # uso futuro?
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?:
-\backslash
-d{6}z)?'                 # timestamp zulu (hhmmssz) uso futuro?
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?P<lat_deg>
-\backslash
-d{2})'
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?P<lat_min>
-\backslash
-d{2}
-\backslash
-.
-\backslash
-d{2})'
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?P<lat_dir>[NS])'
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'[/
-\backslash
-
-\backslash
-]'
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?P<lon_deg>
-\backslash
-d{3})'
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?P<lon_min>
-\backslash
-d{2}
-\backslash
-.
-\backslash
-d{2})'
-\end_layout
-
-\begin_layout Plain Layout
-
-    r'(?P<lon_dir>[EW])'
-\end_layout
-
-\begin_layout Plain Layout
-
-)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def extract_source(aprs_msg:
- str) -> str | None:
-\end_layout
-
-\begin_layout Plain Layout
-
-    """Restituisce il nominativo (campo source) dal messaggio APRS."""
-\end_layout
-
-\begin_layout Plain Layout
-
-    return aprs_msg.split('>',
- 1)[0] if '>' in aprs_msg else None
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def parse_position(aprs_msg:
- str) -> tuple[float | None,
- float | None]:
-\end_layout
-
-\begin_layout Plain Layout
-
-    """Estrae latitudine e longitudine (gradi decimali) dal messaggio APRS."""
-\end_layout
-
-\begin_layout Plain Layout
-
-    match = POSITION_RE.search(aprs_msg)
-\end_layout
-
-\begin_layout Plain Layout
-
-    if not match:
-\end_layout
-
-\begin_layout Plain Layout
-
-        return None,
- None
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    try:
-\end_layout
-
-\begin_layout Plain Layout
-
-        lat_deg = int(match.group("lat_deg"))
-\end_layout
-
-\begin_layout Plain Layout
-
-        lat_min = float(match.group("lat_min"))
-\end_layout
-
-\begin_layout Plain Layout
-
-        latitude = lat_deg + lat_min / 60
-\end_layout
-
-\begin_layout Plain Layout
-
-        if match.group("lat_dir") == "S":
-\end_layout
-
-\begin_layout Plain Layout
-
-            latitude = -latitude
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-        lon_deg = int(match.group("lon_deg"))
-\end_layout
-
-\begin_layout Plain Layout
-
-        lon_min = float(match.group("lon_min"))
-\end_layout
-
-\begin_layout Plain Layout
-
-        longitude = lon_deg + lon_min / 60
-\end_layout
-
-\begin_layout Plain Layout
-
-        if match.group("lon_dir") == "W":
-\end_layout
-
-\begin_layout Plain Layout
-
-            longitude = -longitude
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-        return latitude,
- longitude
-\end_layout
-
-\begin_layout Plain Layout
-
-    except (ValueError,
- TypeError):
-\end_layout
-
-\begin_layout Plain Layout
-
-        return None,
- None
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def handle_frame(raw_frame:
- bytes) -> None:
-\end_layout
-
-\begin_layout Plain Layout
-
-    """Callback per kiss.TCPKISS.read:
- deframma,
- estrae e stampa la posizione."""
-\end_layout
-
-\begin_layout Plain Layout
-
-    frame = Frame.from_bytes(raw_frame)
-\end_layout
-
-\begin_layout Plain Layout
-
-    aprs_msg = str(frame)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    source = extract_source(aprs_msg)
-\end_layout
-
-\begin_layout Plain Layout
-
-    latitude,
- longitude = parse_position(aprs_msg)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    if source and latitude is not None and longitude is not None:
-\end_layout
-
-\begin_layout Plain Layout
-
-        print(f"{source} > POSIZIONE:
- {latitude:.5f} {longitude:.5f}")
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-def main() -> None:
-\end_layout
-
-\begin_layout Plain Layout
-
-    """Apre la sessione KISS/TCP e resta in ascolto finchè non riceve Ctrl-C."""
-\end_layout
-
-\begin_layout Plain Layout
-
-    ki = kiss.TCPKISS(host=KISS_HOST,
- port=KISS_PORT,
- strip_df_start=True)
-\end_layout
-
-\begin_layout Plain Layout
-
-    ki.start()
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    try:
-\end_layout
-
-\begin_layout Plain Layout
-
-        ki.read(callback=handle_frame)  # ciclo continuo
-\end_layout
-
-\begin_layout Plain Layout
-
-    except KeyboardInterrupt:
-\end_layout
-
-\begin_layout Plain Layout
-
-        pass
-\end_layout
-
-\begin_layout Plain Layout
-
-    finally:
-\end_layout
-
-\begin_layout Plain Layout
-
-        ki.stop()
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-if __name__ == "__main__":
-\end_layout
-
-\begin_layout Plain Layout
-
-    main()
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-Il risultato dell'esecuzione di questo script è il seguente:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-alignment document
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename terza_prova_RX_GPS.png
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Ricezione coordinate GPS
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section

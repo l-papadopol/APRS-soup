@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """
 Legge e stampa frame KISS da un socket TCP
-
-Necessita di kiss3: pip install kiss3
 """
 import os
-
 from ax253 import Frame
 import kiss
 
