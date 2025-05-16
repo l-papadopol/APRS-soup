@@ -1,250 +1,221 @@
-# APRS-soup.py
 #!/usr/bin/env python3
-"""
-Server APRS con Leaflet + Flask.
-Usa aprslib per il parsing e aggiorna le posizioni in tempo reale con mappa dinamica.
-Utilizza SQLite per salvare i dati stazione/posizione/timestamp e i messaggi.
-Ogni tipo di SSID ha un'icona diversa.
-Include la possibilità di inviare e ricevere messaggi APRS e notifica in real-time via SSE.
+# --------------------------------------------------------------------------- #
+# APRS-soup – server Flask + Leaflet                                          #
+#                                                                             #
+# • legge i frame AX.25 da Direwolf/KISS e li analizza con aprslib            #
+# • salva posizioni e messaggi in SQLite                                      #
+# • invia aggiornamenti ai browser via Server-Sent Events                     #
+# • offre mappa e API JSON                                                    #
+#                                                                             #
+# © 2025 Papadopol Lucian Ioan – CC BY-NC-ND 3.0 IT                            #
+# --------------------------------------------------------------------------- #
 
-(C) 2025 Papadopol Lucian Ioan - licenza CC BY-NC-ND 3.0 IT
-"""
-
-import os
-import time
-import json
-import sqlite3
-import aprslib
-import queue
-import kiss
+import os, time, json, sqlite3, queue, threading
+import aprslib, kiss
 from ax253 import Frame
 from flask import Flask, send_from_directory, request, Response
 
-DB_FILE     = "positions.db"
-KISS_HOST   = os.environ.get("KISS_HOST", "localhost")
-KISS_PORT   = int(os.environ.get("KISS_PORT", "8001"))
-MYCALL      = os.environ.get("MYCALL", "IZ6NNH")
+# --------------------------------------------------------------------------- #
+# Config                                                                      #
+# --------------------------------------------------------------------------- #
+DB_FILE   = "positions.db"
+KISS_HOST = os.getenv("KISS_HOST", "localhost")
+KISS_PORT = int(os.getenv("KISS_PORT", "8001"))
+MYCALL    = os.getenv("MYCALL",   "IZ6NNH")
 
-subscribers = []  # list of Queue for SSE
+subscribers = []          # code SSE
 
+# --------------------------------------------------------------------------- #
+# Database                                                                    #
+# --------------------------------------------------------------------------- #
 def init_db():
     conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("""
+    cur  = conn.cursor()
+    cur.executescript("""
       CREATE TABLE IF NOT EXISTS positions (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        callsign TEXT, lat REAL, lon REAL,
-        ssid TEXT, timestamp REAL
-      )
-    """)
-    c.execute("""
+        id        INTEGER PRIMARY KEY AUTOINCREMENT,
+        callsign  TEXT,
+        lat       REAL,
+        lon       REAL,
+        ssid      TEXT,
+        timestamp REAL
+      );
       CREATE TABLE IF NOT EXISTS messages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        sender TEXT, recipient TEXT,
-        info TEXT, timestamp REAL
-      )
+        id        INTEGER PRIMARY KEY AUTOINCREMENT,
+        sender    TEXT,
+        recipient TEXT,
+        info      TEXT,
+        timestamp REAL
+      );
     """)
     conn.commit()
     conn.close()
 
+# --------------------------------------------------------------------------- #
+# Utilità                                                                     #
+# --------------------------------------------------------------------------- #
 def extract_ssid(callsign):
     return callsign.split('-')[-1] if '-' in callsign else "0"
 
-def notify_subscribers(msg):
+def notify(msg):
     data = json.dumps(msg)
     for q in list(subscribers):
         q.put(data)
 
-def handle_frame(raw_frame):
+# --------------------------------------------------------------------------- #
+# Gestione frame KISS                                                         #
+# --------------------------------------------------------------------------- #
+def handle_frame(raw):
     try:
-        frame    = Frame.from_bytes(raw_frame)
-        aprs_msg = str(frame)
-        parsed   = aprslib.parse(aprs_msg)
-        print(f"PARSED: {parsed}", flush=True)
+        pkt = aprslib.parse(str(Frame.from_bytes(raw)))
+        print("PARSED:", pkt, flush=True)
 
-        # posizione APRS?
-        if 'latitude' in parsed and 'longitude' in parsed:
-            lat, lon = parsed['latitude'], parsed['longitude']
-            src      = parsed['from']
-            ssid     = extract_ssid(src)
+        # posizione
+        if 'latitude' in pkt and 'longitude' in pkt:
+            lat, lon = pkt['latitude'], pkt['longitude']
+            call     = pkt['from']
+            ssid     = extract_ssid(call)
             ts       = time.time()
-            try:
-                conn = sqlite3.connect(DB_FILE)
-                c    = conn.cursor()
+
+            with sqlite3.connect(DB_FILE) as c:
                 c.execute(
-                  "INSERT INTO positions (callsign,lat,lon,ssid,timestamp) VALUES (?,?,?,?,?)",
-                  (src, lat, lon, ssid, ts)
+                  "INSERT INTO positions (callsign,lat,lon,ssid,timestamp) "
+                  "VALUES (?,?,?,?,?)",
+                  (call, lat, lon, ssid, ts)
                 )
-                conn.commit()
-            except Exception as e:
-                print(f"DB error pos: {e}", flush=True)
-            finally:
-                conn.close()
-            # SSE notify
-            notify_subscribers({
-                "type": "position",
-                "callsign": src,
-                "lat": lat,
-                "lon": lon,
-                "ssid": ssid,
-                "timestamp": ts
+
+            notify({
+              "type":"position", "callsign":call,
+              "lat":lat, "lon":lon, "ssid":ssid, "timestamp":ts
             })
 
-        # messaggio APRS?
-        elif parsed.get('type') == 'message' or (
-             'to' in parsed and 'info' in parsed and 'latitude' not in parsed):
-            sender    = parsed['from']
-            recipient = parsed['to']
-            info      = parsed['info']
-            ts        = time.time()
-            print(f"MESSAGE: from={sender} to={recipient} info={info}", flush=True)
-            try:
-                conn = sqlite3.connect(DB_FILE)
-                c    = conn.cursor()
+        # messaggio
+        elif pkt.get('type') == 'message' or (
+             'to' in pkt and 'info' in pkt and 'latitude' not in pkt):
+            sender, dest, txt = pkt['from'], pkt['to'], pkt['info']
+            ts = time.time()
+
+            with sqlite3.connect(DB_FILE) as c:
                 c.execute(
-                  "INSERT INTO messages (sender,recipient,info,timestamp) VALUES (?,?,?,?)",
-                  (sender, recipient, info, ts)
+                  "INSERT INTO messages (sender,recipient,info,timestamp) "
+                  "VALUES (?,?,?,?)",
+                  (sender, dest, txt, ts)
                 )
-                conn.commit()
-            except Exception as e:
-                print(f"DB error msg: {e}", flush=True)
-            finally:
-                conn.close()
 
     except Exception as e:
-        print(f"PARSE ERROR: {e}", flush=True)
+        print("PARSE ERROR:", e, flush=True)
 
-def get_realtime_positions():
+# --------------------------------------------------------------------------- #
+# Query                                                                       #
+# --------------------------------------------------------------------------- #
+def last_positions():
     conn = sqlite3.connect(DB_FILE)
-    c    = conn.cursor()
-    c.execute("""
+    cur  = conn.cursor()
+    cur.execute("""
       SELECT p1.callsign,p1.lat,p1.lon,p1.ssid,p1.timestamp
       FROM positions p1
       JOIN (
-        SELECT callsign, MAX(timestamp) AS maxts
+        SELECT callsign, MAX(timestamp) AS ts
         FROM positions GROUP BY callsign
-      ) p2 ON p1.callsign=p2.callsign AND p1.timestamp=p2.maxts
+      ) p2 ON p1.callsign=p2.callsign AND p1.timestamp=p2.ts
     """)
-    rows = c.fetchall()
+    rows = cur.fetchall()
     conn.close()
-    out = {}
-    for callsign, lat, lon, ssid, ts in rows:
-        out[callsign] = {
-            "lat": lat, "lon": lon,
-            "ssid": ssid, "timestamp": ts
-        }
-    return out
+    return {cs:{"lat":lat,"lon":lon,"ssid":ssid,"timestamp":ts}
+            for cs,lat,lon,ssid,ts in rows}
 
-def get_recent_messages(limit=50):
+def last_messages(limit=50):
     conn = sqlite3.connect(DB_FILE)
-    c    = conn.cursor()
-    c.execute("""
+    cur  = conn.cursor()
+    cur.execute("""
       SELECT sender,recipient,info,timestamp
-      FROM messages
-      ORDER BY timestamp DESC
-      LIMIT ?
+      FROM messages ORDER BY timestamp DESC LIMIT ?
     """, (limit,))
-    rows = c.fetchall()
+    rows = cur.fetchall()
     conn.close()
-    return [
-      {"sender":s,"recipient":r,"info":i,"timestamp":t}
-      for s,r,i,t in rows
-    ]
+    return [dict(sender=s,recipient=r,info=i,timestamp=t) for s,r,i,t in rows]
 
+# --------------------------------------------------------------------------- #
+# Server-Sent Events                                                          #
+# --------------------------------------------------------------------------- #
 def sse_stream():
     q = queue.Queue()
     subscribers.append(q)
     try:
         while True:
-            data = q.get()
-            yield f"data: {data}\n\n"
-    except GeneratorExit:
+            yield f"data: {q.get()}\n\n"
+    finally:
         subscribers.remove(q)
 
+# --------------------------------------------------------------------------- #
+# Avvio                                                                        #
+# --------------------------------------------------------------------------- #
 def main():
     init_db()
 
-    # connessione KISS unica
-    global global_kiss
-    global_kiss = kiss.TCPKISS(
-        host=KISS_HOST,
-        port=KISS_PORT,
-        strip_df_start=True
-    )
-    global_kiss.start()
+    global kiss_link
+    kiss_link = kiss.TCPKISS(host=KISS_HOST, port=KISS_PORT, strip_df_start=True)
+    kiss_link.start()
 
-    import threading
     threading.Thread(
-      target=global_kiss.read,
+      target=kiss_link.read,
       kwargs={'callback': handle_frame, 'min_frames': None},
       daemon=True
     ).start()
 
     app = Flask(__name__)
 
-    @app.route('/')
-    def index():
-        return send_from_directory('.', 'map_template.html')
+    # statici
+    app.add_url_rule('/',              'idx',
+                     lambda: send_from_directory('.', 'map_template.html'))
+    app.add_url_rule('/icons/<path:f>','ico',
+                     lambda f: send_from_directory('icons', f))
+    app.add_url_rule('/geo/<path:f>',  'geo',
+                     lambda f: send_from_directory('geo', f))
+    app.add_url_rule('/leaflet_customized.css','css',
+                     lambda: send_from_directory('.', 'leaflet_customized.css'))
+    app.add_url_rule('/leaflet.js',    'leaf',
+                     lambda: send_from_directory('.', 'leaflet.js'))
+    app.add_url_rule('/APRS-soup.js',  'js',
+                     lambda: send_from_directory('.', 'APRS-soup.js'))
 
+    # API
     @app.route('/positions.json')
-    def positions_json():
-        rp = request.args.get('range', 'realtime')
-        data = get_realtime_positions()
-        if rp != 'realtime':
-            M = {'15m':15*60,'30m':30*60,'1h':3600,'6h':6*3600,'12h':12*3600,'24h':24*3600}
-            secs = M.get(rp)
+    def positions():
+        rng = request.args.get('range', 'realtime')
+        data = last_positions()
+        if rng != 'realtime':
+            secs = {'15m':900,'30m':1800,'1h':3600,
+                    '6h':21600,'12h':43200,'24h':86400}.get(rng)
             if secs:
-                cutoff = time.time() - secs
-                data = {cs:pos for cs,pos in data.items() if pos['timestamp']>=cutoff}
+                cut = time.time() - secs
+                data = {cs:p for cs,p in data.items() if p['timestamp'] >= cut}
         return json.dumps(data)
 
     @app.route('/messages.json')
-    def messages_json():
-        return json.dumps(get_recent_messages())
-
-    @app.route('/icons/<path:f>')
-    def icons(f):
-        return send_from_directory('icons', f)
-
-    @app.route('/geo/<path:f>')
-    def geo(f):
-        return send_from_directory('geo', f)
-
-    @app.route('/leaflet_customized.css')
-    def css():
-        return send_from_directory('.', 'leaflet.css')
-
-    @app.route('/js/leaflet.js')
-    def js():
-        return send_from_directory('.', 'leaflet.js')
-
-    @app.route('/js/APRS-soup.js')
-    def app_js():
-        return send_from_directory('.', 'APRS-soup.js')
+    def messages():
+        return json.dumps(last_messages())
 
     @app.route('/stream')
     def stream():
-        return Response(sse_stream(), mimetype="text/event-stream")
+        return Response(sse_stream(), mimetype='text/event-stream')
 
     @app.route('/send_message', methods=['POST'])
-    def send_message():
-        dest = request.form.get('destination')
-        msg  = request.form.get('message')
-        if not dest or not msg:
-            return "destination e message necessari", 400
+    def send_msg():
+        dest = request.form.get('destination', '').strip()
+        txt  = request.form.get('message', '').strip()
+        if not dest or not txt:
+            return "dest e message obbligatori", 400
         try:
-            frame = Frame.ui(
-                destination=dest,
-                source=MYCALL,
-                path=["WIDE2-2"],
-                info=">" + msg
-            )
-            global_kiss.write(frame)
-            return "Messaggio inviato", 200
+            frm = Frame.ui(destination=dest, source=MYCALL,
+                           path=["WIDE2-2"], info=">"+txt)
+            kiss_link.write(frm)
+            return "ok", 200
         except Exception as e:
             return str(e), 500
 
     app.run(host='0.0.0.0', port=5032)
 
+# --------------------------------------------------------------------------- #
 if __name__ == "__main__":
     main()
