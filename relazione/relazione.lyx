@@ -5090,7 +5090,7 @@ def main() -> None:
 
 \begin_layout Plain Layout
 
-        ki.read(callback=handle_frame)  # ciclo continuo
+        ki.read(callback=handle_frame)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5152,7 +5152,7 @@ status collapsed
 \align center
 \begin_inset Graphics
 	filename terza_prova_RX_GPS.png
-	scale 50
+	scale 30
 
 \end_inset
 
@@ -5184,8 +5184,502 @@ Ricezione coordinate GPS
 Realizzazione di un digipeater con Raspberry Pi 3 B
 \end_layout
 
+\begin_layout Standard
+Per approfondire la rete APRS ho realizzato un sistema ad hoc con funzione di digipeater.
+ Ho coinvolto la sezione di Pesaro 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://www.aripesaro.it/
+\end_layout
+
+\end_inset
+
+ dell’A.R.I.
+ Associazione Radioamatori Italiani
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/Associazione_Radioamatori_Italiani
+\begin_inset Newline newline
+\end_inset
+
+https://www.ari.it/
+\end_layout
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+L'A.R.I è un ente morale fondato da Guglielmo Marconi per unire i radioamatori italiani.
+ La sezione di Pesaro di cui sono socio,
+ mi ha offerto la possibilità di installare il mio digipeater presso il ripetitore VHF IR6A:
+ all’interno dello shelter posso così sfruttare l’antenna omnidirezionale già in quota e l’alimentazione elettrica esistente.
+\end_layout
+
+\begin_layout Subsection
+Hardware
+\end_layout
+
+\begin_layout Standard
+Il digipeater è stato ingenerizzato ed assemblato cercando di sfruttare hardware low-cost oppure di recupero facilmente adattabile allo scopo:
+\end_layout
+
+\begin_layout Enumerate
+Ricetrasmettitore hand held tipo 
+\begin_inset Quotes eld
+\end_inset
+
+walkie-talkie
+\begin_inset Quotes erd
+\end_inset
+
+ Baofeng UV-5R.
+\end_layout
+
+\begin_layout Enumerate
+Single board computer Raspberry Pi 3b e scheda audio USB 
+\begin_inset Quotes eld
+\end_inset
+
+generica
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Interfaccia radio-pc e sistema di alimentazione realizzati artigianalmente su di una basetta per prototipazione elettronica.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename digipeater3.jpeg
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Digipeater IR6A con il coperchio aperto per mostrare la sua componentistica
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ Nella foto si vedono la ventola installata per la ventilazione forzata e il portafusibile che protegge l’impianto da cortocircuiti,
+ evitando possibili principi d’incendio.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il connettore d’antenna è montato sulla parte superiore del coperchio apribile (non visibile in foto) e raggiunge la radio tramite un breve tratto di cavo coassiale RG-174 terminato con connettori SMA.
+\end_layout
+
+\begin_layout Subsection
+Software
+\end_layout
+
+\begin_layout Standard
+Per la componente software ho potuto riutilizzare quasi tutto ciò che avevo già sperimentato sul mio portatile:
+ sia lì che sul Raspberry Pi eseguo Debian Linux,
+ quindi la procedura è stata pressoché identica.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+TNC software – Direwolf
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Ho installato nuovamente Direwolf e,
+ nel file direwolf.conf,
+ ho abilitato la funzione DIGIPEAT per trasformarlo in digipeater.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Un’unità systemd (/etc/systemd/system/direwolf.service) avvia l’applicazione al boot e ne assicura il riavvio automatico in caso di crash o di riavvio del sistema.
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Accesso remoto senza Internet sul sito
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Il sito non dispone di connettività WAN,
+ quindi per gestione e diagnostica ho riconfigurato il Raspberry Pi come access-point Wi-Fi stand-alone:
+\end_layout
+
+\begin_layout Itemize
+Il software RaspAP fornisce un AP 802.11 n e una web dashboard completa.
+\end_layout
+
+\begin_layout Itemize
+Dal parcheggio,
+ mi basta collegarmi alla rete Wi-Fi dedicata,
+ aprire la dashboard o fare login via SSH per interventi da shell.
+ Il servizio Telnet è disabilitato.
+\end_layout
+
+\begin_layout Itemize
+Per sicurezza ho impostato credenziali distinte per l’AP,
+ per la dashboard e per l’utente SSH;
+ inoltre l’autenticazione SSH accetta solo chiavi ed è limitata agli indirizzi della subnet Wi-Fi.
+\end_layout
+
+\begin_layout Standard
+Questa configurazione mi permette di controllare i log di Direwolf o modificarne la configurazione senza dover aprire lo shelter o coinvolgere il custode.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Installazione
+\end_layout
+
+\begin_layout Standard
+Il digipeater è stato installato in località Montegaudio,
+ nel comune di Pesaro-Monteciccardo,
+ a circa 380 m s.l.m.
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename digipeater6.jpeg
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Lo shelter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename digipeater4.jpeg
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Il digipeater
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Per valutarne la copertura ho utilizzato la web-app aprs.fi:
+ il servizio raccoglie i frame APRS inoltrati dai digipeater connessi a Internet,
+ li geolocalizza e li visualizza su mappa insieme a diverse statistiche,
+ in particolare,
+ la funzione 
+\begin_inset Quotes eld
+\end_inset
+
+coverage map
+\begin_inset Quotes erd
+\end_inset
+
+ disegna una griglia colorata che rappresenta l’intensità del segnale ricevuto nei punti in cui è presente almeno un Internet APRS Gateway.
+ I colori impiegati sono:
+\end_layout
+
+\begin_layout Itemize
+rosso chiaro – segnale ottimo,
+ pacchetti ricevuti con margine;
+\end_layout
+
+\begin_layout Itemize
+gradualmente verso il viola – intensità via via più bassa;
+\end_layout
+
+\begin_layout Itemize
+assenza di colore – nessun dato perché non vi sono ricevitori Internet in quella cella.
+\end_layout
+
+\begin_layout Standard
+Analizzando questa mappa nei giorni successivi all’attivazione ho potuto confermare che il digipeater IR6A-Montegaudio copre l’area urbana di Pesaro,
+ la fascia costiera fino a Fano e parte dell’entroterra marchigiano,
+ con segnali solidi (rosso) nel raggio di 20–25 km e decrescenti (viola) fino a oltre 50 km in linea di vista.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ponte.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Punto geografico dove è situato IR6A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dati_pos_rx_ir6a.png
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mappa di copertura radio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
 \begin_layout Section
 APRS-soup
+\end_layout
+
+\begin_layout Standard
+Acquisita la capacità di inviare e ricevere pacchetti APRS e di estrarne le coordinate geografiche,
+ mi sono reso conto di non disporre di un’applicazione in grado di mostrare su una mappa le stazioni APRS ricevute.
+ Ho quindi pensato di realizzare un piccolo progetto software sperimentale che facesse questo e altro.
+\end_layout
+
+\begin_layout Subsection
+Requisiti funzionali
+\end_layout
+
+\begin_layout Standard
+I requisiti di base,
+ oltre alla semplice visualizzazione delle stazioni sulla mappa,
+ sono:
+\end_layout
+
+\begin_layout Itemize
+Portabilità sulle piattaforme Linux e Windows.
+\end_layout
+
+\begin_layout Itemize
+Possibilità di ricevere e inviare messaggi di testo da e verso le altre stazioni.
+\end_layout
+
+\begin_layout Itemize
+Registrazione (logging) dei dati ricevuti per analisi future.
+\end_layout
+
+\begin_layout Subsection
+Scelte architetturali ed implementative
+\end_layout
+
+\begin_layout Standard
+Per soddisfare i requisiti sopra elencati ho deciso di:
+\end_layout
+
+\begin_layout Itemize
+Continuare a utilizzare Direwolf come software TNC e interfacciarmi con esso via TCP.
+\end_layout
+
+\begin_layout Itemize
+Adottare un’architettura client-server in cui un server web dialoga con un back-end Python,
+ fornendo al browser del client dati aggiornati in tempo reale e ricevendone eventuali messaggi APRS da inoltrare al back-end.
+\end_layout
+
+\begin_layout Itemize
+Utilizzare HTML,
+ CSS e JavaScript per l’interfaccia utente nel browser.
+\end_layout
+
+\begin_layout Itemize
+Impiegare un database SQLite 3 per memorizzare i messaggi APRS ricevuti.
 \end_layout
 
 \end_body
