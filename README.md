@@ -1,7 +1,7 @@
 # APRS-soup — Server APRS in tempo reale (Flask + Leaflet)
 
 > **Visualizzatore APRS progettato per funzionare anche senza connessione Internet**  
-> Riceve frame AX.25 da un TNC KISS (ad es. Direwolf), li analizza con `aprslib`, li salva in SQLite, invia *Server-Sent Events* ai browser collegati e disegna le stazioni su una mappa Leaflet alimentata da tile locali.
+> Riceve frame AX.25 da un TNC KISS Direwolf, li analizza con `aprslib`, li salva in SQLite, invia *Server-Sent Events* ai browser collegati e disegna le stazioni su una mappa Leaflet alimentata da tile locali.
 
 ---
 
