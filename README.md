@@ -5,7 +5,7 @@
 
 ---
 
-## ✨ Funzionalità principali
+## Funzionalità principali
 * **Posizioni e messaggi live** — aggiornamento istantaneo tramite SSE.
 * **Mappe offline** — servi tile PNG dal percorso `./geo/**` e lavora fuori rete.
 * **Persistenza su SQLite** — conserva l’ultima posizione di ogni stazione e lo storico dei messaggi.
@@ -15,7 +15,7 @@
 
 ---
 
-## 🖼 Screenshot
+## Screenshot
 
 ![Schermata APRS-soup](aprs_soup.png)
 
