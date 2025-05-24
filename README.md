@@ -22,12 +22,14 @@
 ---
 
 ## 🗂 Struttura del repository
-
+Attenzione! La cartella geo/ contiene le tile *.png per i livelli di zoom dal 4 al 13. Occupa 3GB buoni!!!
 ```text
 aprs_soup.py                   ← server backend
 map_template.html              ← pagina Leaflet
 APRS-soup.js                   ← logica frontend
 leaflet.js / leaflet_customized.css  ← CSS di Leaflet
 icons/                         ← simboli APRS (PNG)
+documents/                     ← documentazione + relazione per esame Reti di Calcolatori
 geo/                           ← tile XYZ (z/x/y.png) prerenderizzate
+APRS-soup.zip                  ← sorgenti "lite" senza i livelli zoom/tile "pesanti"
 LICENSE
