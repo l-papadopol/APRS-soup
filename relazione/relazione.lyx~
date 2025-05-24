@@ -36,7 +36,7 @@
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -63,6 +63,10 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 1.8cm
+\topmargin 2cm
+\rightmargin 1.8cm
+\bottommargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -97,11 +101,23 @@ APRS
 \begin_inset Quotes erd
 \end_inset
 
-
+ 
 \end_layout
 
 \begin_layout Subtitle
-Relazione per il progetto del Corso di Reti di Calcolatori
+Una ricerca teorico-pratica e sperimentale 
+\begin_inset Newline newline
+\end_inset
+
+sulla rete radioamatoriale per geolocalizzazione e gestione delle 
+\begin_inset Quotes eld
+\end_inset
+
+unità operative
+\begin_inset Quotes erd
+\end_inset
+
+ in situazione di emergenza.
 \end_layout
 
 \begin_layout Author
@@ -217,12 +233,6 @@ Il mio percorso nel mondo della radio è iniziato subito dopo la fine delle scuo
  affascinato dalla tecnica e motivato da un profondo interesse per l’elettronica e le telecomunicazioni,
  ho conseguito la patente di radioamatore all’età di 18 anni,
  immediatamente dopo l’esame di maturità.
-\begin_inset Newline newline
-\end_inset
-
-La curiosità verso tutto ciò che riguarda la trasmissione di segnali a distanza,
- unita alla voglia di sperimentare sul campo,
- ha reso naturale l’ingresso in questo ambito.
 \begin_inset Newline newline
 \end_inset
 
@@ -355,15 +365,19 @@ Vengono descritte le fasi di configurazione,
 \end_layout
 
 \begin_layout Itemize
-una stazione client basata su computer e software TNC Direwolf
+una stazione client basata su computer e software TNC Direwolf;
 \end_layout
 
 \begin_layout Itemize
-un digipeater realizzato su piattaforma Raspberry Pi
+un digipeater realizzato su piattaforma Raspberry Pi;
 \end_layout
 
 \begin_layout Itemize
-script personalizzati per l’interazione diretta con la rete APRS via socket TCP.
+script per la creazione e decodifica di pacchetti APRS;
+\end_layout
+
+\begin_layout Itemize
+un applicazione web completa per mappare le stazioni APRS georeferenziate ricevute;
 \end_layout
 
 \begin_layout Standard
@@ -393,14 +407,13 @@ https://en.wikipedia.org/wiki/Automatic_Packet_Reporting_System
 
 ,
  acronimo di Automatic Packet Reporting System,
- è un protocollo di comunicazione ideato nei primi anni ’90 da Bob Bruninga (WB4APR) per soddisfare la necessità di trasmettere dati in tempo reale all’interno della comunità radioamatoriale.
+ è un protocollo di comunicazione ideato nei primi anni ’90 da Bob Bruninga (WB4APR) per soddisfare la necessità della comunità radioamatoriale di trasmettere dati in tempo reale.
  
 \begin_inset Newline newline
 \end_inset
 
 Nato inizialmente come sistema per la localizzazione automatica delle stazioni mobili,
- si è progressivamente evoluto fino a diventare una piattaforma di comunicazione tattica capace di trasmettere una varietà di informazioni geografiche e testuali,
- attraverso l’uso di pacchetti radio.
+ si è progressivamente evoluto fino a diventare una piattaforma di comunicazione capace di trasmettere una varietà di informazioni geografiche e testuali.
 \begin_inset Newline newline
 \end_inset
 
@@ -465,14 +478,7 @@ Questo approccio lo rende più vicino a un sistema di tipo broadcast,
 \begin_inset Newline newline
 \end_inset
 
-A differenza dei sistemi packet tradizionali,
- APRS adotta un modello in cui ogni pacchetto è destinato a tutti i ricevitori presenti nel raggio d’azione.
- 
-\begin_inset Newline newline
-\end_inset
-
-Questo permette la distribuzione immediata delle informazioni a più destinatari contemporaneamente,
- rendendolo particolarmente utile in contesti operativi dinamici come gli eventi sul campo,
+La distribuzione immediata delle informazioni a più destinatari contemporaneamente rende particolarmente utile l'APRS in contesti operativi dinamici come gli eventi sul campo,
  le situazioni di emergenza o le attività di monitoraggio ambientale.
 \begin_inset Newline newline
 \end_inset
@@ -499,7 +505,7 @@ L’APRS consente l’invio di dati in forma compatta e strutturata,
 
 \begin_layout Itemize
 la posizione geografica della stazione,
- rilevata spesso via GPS;
+ rilevata via GPS;
 \end_layout
 
 \begin_layout Itemize
@@ -508,10 +514,10 @@ messaggi testuali brevi,
 \end_layout
 
 \begin_layout Itemize
-oggetti e simboli visualizzabili su mappe digitali (come ambulanze,
+oggetti e simboli visualizzabili su mappe digitali come ambulanze,
  veicoli,
  eventi,
- ostacoli);
+ ostacoli;
 \end_layout
 
 \begin_layout Itemize
@@ -525,6 +531,10 @@ bollettini e annunci a diffusione generale.
 \begin_layout Standard
 Queste informazioni possono essere ricevute e visualizzate su software dedicati,
  che consentono una rappresentazione grafica in tempo reale del territorio e delle entità in movimento o in postazione fissa.
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -568,15 +578,18 @@ Negli anni il sistema ha conosciuto una larga diffusione a livello internazional
 \end_inset
 
 Il collegamento con la rete APRS-IS ha poi consentito l’estensione del sistema anche su Internet,
- offrendo la possibilità di raccogliere e visualizzare i dati trasmessi via radio in forma globale attraverso portali pubblici.
- 
+ offrendo la possibilità di raccogliere e visualizzare i dati trasmessi via radio in forma globale attraverso portali pubblici quali ad esempio aprs.fi
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://aprs.fi/#!lat=43.5697&lng=12.4732
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage pagebreak
 \end_inset
 
-
+.
+ 
 \end_layout
 
 \begin_layout Section
@@ -905,8 +918,7 @@ Estratto del band-plan VHF & UP.
 
 \end_inset
 
-Il mezzo di trasmissione è costituito dall'onda elettromagnetica irradiata in aria libera,
- utilizzando la modulazione di frequenza (FM).
+Il mezzo di trasmissione è costituito dall'onda elettromagnetica irradiata utilizzando la modulazione di frequenza FM.
  
 \begin_inset Newline newline
 \end_inset
@@ -921,11 +933,7 @@ https://en.wikipedia.org/wiki/Frequency-shift_keying
 
 \end_inset
 
- 
-\begin_inset Newline newline
-\end_inset
-
-Audio Frequency-Shift Keying,
+ ovvero Audio Frequency-Shift Keying,
  seguendo lo standard Bell 202
 \begin_inset Foot
 status open
@@ -949,8 +957,7 @@ https://en.wikipedia.org/wiki/Bell_202
 \end_layout
 
 \begin_layout Standard
-Il segnale audio così modulato viene iniettato nel trasmettitore FM,
- che lo converte in modulazione di frequenza e lo irradia via antenna.
+Il segnale audio così modulato viene iniettato nel trasmettitore che lo converte in modulazione di frequenza e lo irradia via antenna.
  
 \begin_inset Newline newline
 \end_inset
@@ -1072,7 +1079,7 @@ Grazie a questa limitata occupazione di spettro,
 
 
 \series bold
-Ritardo (latenza)
+Ritardo/latenza
 \series default
 
 \begin_inset Newline newline
@@ -1082,15 +1089,19 @@ Il ritardo o latenza di trasmissione in un collegamento APRS su 144 MHz è compo
 \end_layout
 
 \begin_layout Itemize
-Il tempo necessario al modem TNC per modulare e preparare il pacchetto.
+il tempo necessario al modem TNC per modulare e preparare il pacchetto;
 \end_layout
 
 \begin_layout Itemize
-Il tempo di trasmissione del pacchetto stesso sul canale a 1200 baud.
+il tempo di trasmissione del pacchetto stesso sul canale a 1200 baud;
 \end_layout
 
 \begin_layout Itemize
-Il tempo di propagazione dell'onda radio nell’atmosfera.
+il tempo di propagazione dell'onda radio nell’atmosfera;
+\end_layout
+
+\begin_layout Itemize
+il ritardo di accesso al canale.
 \end_layout
 
 \begin_layout Standard
@@ -1159,7 +1170,7 @@ Dimostro:
 \begin_inset Newline newline
 \end_inset
 
-Va anche considerato il ritardo di accesso al canale,
+Va poi considerato il ritardo di accesso al canale,
  dato che le stazioni operano in modalità condivisa con Carrier Sense Multiple Access (CSMA) p-persistente
 \begin_inset Foot
 status open
@@ -1192,7 +1203,7 @@ Hardware
 \end_inset
 
 Per permettere la trasmissione e la ricezione di frame AX.25,
- comunemente chiamati 
+ comunemente chiamati dai radioamatori 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1236,7 +1247,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1285,15 +1296,7 @@ Nel corso degli anni,
 \begin_inset Newline newline
 \end_inset
 
-Direwolf è un TNC software che consente di inviare e ricevere i frame 
-\begin_inset Quotes eld
-\end_inset
-
-pacchetti
-\begin_inset Quotes erd
-\end_inset
-
- AX.25 utilizzando una normale scheda audio come interfaccia fisica verso la radio.
+Direwolf è un TNC software che consente di inviare e ricevere i frame AX.25 utilizzando una normale scheda audio come interfaccia fisica verso la radio.
  
 \begin_inset Newline newline
 \end_inset
@@ -1304,13 +1307,13 @@ In pratica,
 \begin_inset Newline newline
 \end_inset
 
-Il programma riceve i segnali audio in ingresso dal microfono della scheda audio (o da un'interfaccia dedicata) e li interpreta come frame AX.25.
+Il programma riceve i segnali audio in ingresso dal microfono della scheda audio (o da un'interfaccia dedicata) e li elabora.
  
 \begin_inset Newline newline
 \end_inset
 
 Allo stesso modo,
- può generare segnali audio in uscita per trasmettere i pacchetti in modalità AFSK,
+ può generare segnali audio in uscita per trasmettere dati in modalità AFSK,
  che la radio invierà sotto forma di onde radio.
 \begin_inset Newline newline
 \end_inset
@@ -1321,7 +1324,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1360,7 +1363,7 @@ Ricapitolando una moderna stazione radio operante in APRS è composta da:
 \end_layout
 
 \begin_layout Itemize
-Ricetrasmettitore VHF,
+un ricetrasmettitore VHF,
  anche portatile 
 \begin_inset Quotes eld
 \end_inset
@@ -1369,11 +1372,11 @@ hand-held
 \begin_inset Quotes erd
 \end_inset
 
- o modulo custom di comunicazione radio.
+ o modulo custom di comunicazione radio;
 \end_layout
 
 \begin_layout Itemize
-Antenna VHF omnidirezionale tipo 
+una (o più) atenna VHF omnidirezionale tipo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1389,11 +1392,11 @@ collineare
 \begin_inset Quotes erd
 \end_inset
 
-
+ o direttiva;
 \end_layout
 
 \begin_layout Itemize
-Interfaccia audio radio - PC
+interfaccia audio radio - PC;
 \end_layout
 
 \begin_layout Itemize
@@ -1405,11 +1408,18 @@ Direwolf
 \begin_inset Quotes erd
 \end_inset
 
-
+;
 \end_layout
 
 \begin_layout Itemize
-Software applicativo di cartografia/messaggistica APRS
+software applicativo di cartografia/messaggistica APRS.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1455,7 +1465,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1522,7 +1532,11 @@ I segnali audio di ingresso ed uscita verso la scheda audio ed il comando di tra
 
 Rimane comunque l'obbligo di avere l'autorizzazione/licenza radioamatoriale e nominativo,
  per usare le frequenze radio.
- 
+\begin_inset Newline newline
+\end_inset
+
+Per ricevere solamente ovvero senza trasmettere,
+ chiunque può farlo senza dover obbligatoriamente ottenere la licenza ed il nominativo da radioamatore.
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -1535,7 +1549,8 @@ Livello collegamento
 
 \begin_layout Standard
 Nel contesto dello stack di protocolli APRS,
- il livello dati corrisponde al secondo livello del modello ISO/OSI e rappresenta lo strato in cui i dati provenienti dal livello applicativo vengono organizzati in frame strutturati,
+ il livello dati corrisponde al secondo livello del modello ISO/OSI e rappresenta lo strato in cui i dati provenienti dal livello applicativo organizzati in pacchetti,
+ vengono incapsulati in frame strutturati,
  pronti per la trasmissione sul canale fisico.
  
 \begin_inset Newline newline
@@ -1575,7 +1590,7 @@ Packet radio
 \begin_inset Newline newline
 \end_inset
 
-Il packet radio è un modello di comunicazione dati che applica i principi del packet switching ai collegamenti radio.
+Il packet radio è un modello di comunicazione dati che applica i principi della commutazione di pacchetto ai collegamenti radio.
  
 \begin_inset Newline newline
 \end_inset
@@ -1587,8 +1602,8 @@ Non è un protocollo specifico,
 \begin_inset Newline newline
 \end_inset
 
-Questo modello si contrappone alle trasmissioni a circuito continuo,
- tipiche della fonia,
+Questo modello si contrappone alle trasmissioni a commutazione di circuito ,
+ tipiche della fonia su circuito PSTN ad esempio,
  e consente la creazione di reti dinamiche,
  decentralizzate e flessibili.
 \begin_inset Newline newline
@@ -1651,7 +1666,11 @@ Il protocollo AX.25 è l’implementazione effettiva del livello dati nello stac
 \begin_inset Newline newline
 \end_inset
 
-Derivato dal protocollo X.25,
+
+\bar under
+Derivato
+\bar default
+ dal protocollo X.25,
  è stato adattato specificamente per l’uso radioamatoriale e si è affermato come standard per la trasmissione di pacchetti via radio in ambito radioamatoriale.
  
 \begin_inset Newline newline
@@ -1673,12 +1692,20 @@ Un frame AX.25 ha una struttura precisa,
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 Flag di inizio/fine 0x7E:
+
+\shape default
  delimitano i bordi del pacchetto.
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 Destination address:
+
+\shape default
  questo campo può contenere un nominativo di destinazione APRS.
  I dati APRS sono codificati per garantire che il campo rispetti il formato standard AX.25 per i nominativi ossia 6 caratteri alfanumerici più SSID.
  
@@ -1690,7 +1717,11 @@ Se l’SSID è diverso da zero,
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 Source address:
+
+\shape default
  questo campo contiene il nominativo e lo SSID della stazione trasmittente.
  
 \begin_inset Newline newline
@@ -1700,7 +1731,11 @@ Se lo SSID è diverso da zero esso può specificare un codice simbolo di visuali
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 Path:
+
+\shape default
  in questo campo possono essere inclusi da zero a otto nominativi di digipeater.
  
 \begin_inset Newline newline
@@ -1710,7 +1745,11 @@ Questi indirizzi di digipeater possono essere sovrascritti da un percorso di dig
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 Campo di controllo:
+
+\shape default
  definisce la tipologia del frame,
  es:
  informativo,
@@ -1719,34 +1758,35 @@ Campo di controllo:
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 PID Protocol Identifier:
+
+\shape default
  specifica il protocollo per layer 3;
  per APRS è 0xF0 ovvero nessun protocollo layer 3.
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 Payload:
- contiene il payload vero e proprio,
+ 
+\shape default
+contiene il payload vero e proprio,
  come un messaggio APRS o un pacchetto di posizione.
 \end_layout
 
 \begin_layout Itemize
+
+\shape italic
 FCS Frame Check Sequence:
+
+\shape default
  una sequenza CRC-16 per il rilevamento degli errori.
 \end_layout
 
 \begin_layout Standard
-Il pacchetto subisce ulteriori trasformazioni per l’invio:
- viene incapsulato tra flag di delimitazione,
- codificato secondo lo schema NRZI Non-Return-to-Zero Inverted,
- e infine trasmesso tramite modulazione AFSK.
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
 Nel caso specifico dell’APRS,
  il frame AX.25 utilizzato è un U-frame ovvero un unnumbered frame,
  con PID 0xF0,
@@ -1764,7 +1804,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1797,10 +1837,6 @@ Struttura di un frame AX.25
 \begin_layout Standard
 Nota:
  il payload ha dimensione minima di 1 byte e massima di 256 byte.
-\begin_inset Newline newline
-\end_inset
-
-
 \begin_inset Newline newline
 \end_inset
 
@@ -1852,18 +1888,20 @@ CSMA p-persistente
 \end_layout
 
 \begin_layout Itemize
-se è libero si trasmette subito con probabilità p,
+Se il canale radio è libero,
+ si trasmette subito con probabilità p,
  oppure rimanda la trasmissione all'intervallo successivo con probabilità q=1-p,
  se anche questo risultasse libero trasmette altrimenti rimanda,
  se invece è occupato si comporta come una collisione e attende un intervallo di tempo casuale per poi ritrasmettere;
 \end_layout
 
 \begin_layout Itemize
-se è occupato fin dall'inizio attende fino all'intervallo successivo e si ripete l'algoritmo sopracitato;
+Se il canale radio è occupato fin dall'inizio,
+ si attende fino all'intervallo successivo e si ripete l'algoritmo sopracitato;
 \end_layout
 
 \begin_layout Itemize
-se viene rivelata una collisione,
+Se viene rivelata una collisione,
  prima di ritentare la trasmissione,
  si attende un intervallo di tempo casuale.
 \end_layout
@@ -1880,8 +1918,11 @@ SSID in APRS
 \begin_inset Newline newline
 \end_inset
 
-SSID sta per Secondary Station Identifier.
- Serve a differenziare più dispositivi o ruoli legati allo stesso nominativo principale oppure a specificare che tipo e quale funzione svolge il dispositivo APRS.
+SSID sta per 
+\shape italic
+Secondary Station Identifier
+\shape default
+ e serve a differenziare più dispositivi o ruoli legati allo stesso nominativo principale oppure a specificare che tipo e quale funzione svolge il dispositivo APRS.
  Utilizzato nel campo 
 \begin_inset Quotes eld
 \end_inset
@@ -1916,7 +1957,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -2669,7 +2710,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3075,7 +3116,11 @@ digital repeating
 \end_inset
 
 ,
- indica il processo attraverso cui una stazione radioamatoriale appositamente configurata per svolgere tale ruolo chiamata digipeater,
+ indica il processo attraverso cui una stazione radioamatoriale appositamente configurata per svolgere tale ruolo chiamata 
+\series bold
+digipeater
+\series default
+,
  riceve,
  interpreta e successivamente ritrasmette un pacchetto APRS.
  
@@ -3232,7 +3277,7 @@ placement H
 alignment document
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -3776,7 +3821,16 @@ Realizzazione di una stazione APRS sperimentale
 \end_layout
 
 \begin_layout Standard
-Ho deciso di iniziare a sperimentare la rete APRS e ad accedervi dal mio studio di casa.
+Ho deciso di iniziare a sperimentare la rete APRS accedendovi dal mio laboratorio di casa,
+ quindi in modalità 
+\begin_inset Quotes eld
+\end_inset
+
+stazione fissa
+\begin_inset Quotes erd
+\end_inset
+
+.
  
 \begin_inset Newline newline
 \end_inset
@@ -3843,7 +3897,7 @@ L'unico ostacolo incontrato è stato nella selezione della corretta sorgente aud
 \begin_inset Newline newline
 \end_inset
 
-Il problema è stato risolto utilizzando i comandi ALSA aplay ed arecord,
+Il problema è stato risolto utilizzando i comandi ALSA aplay ed arecord per identificare le designazioni corrette delle varie sorgenti disponibili,
  procedendo per tentativi fino all'identificazione della sorgente audio corretta.
  
 \begin_inset Newline newline
@@ -3868,7 +3922,7 @@ Ricetrasmettitore Kenwood TS-790S
 \end_inset
 
 Per la sezione radio è stato utilizzato un ricetrasmettitore Kenwood TS-790S,
- un apparato multimodo progettato per operare prevalentemente nelle bande VHF/UHF dei 144Mhz,
+ un apparato multimodo progettato per operare nelle bande VHF/UHF dei 144Mhz,
  432Mhz e 1296Mhz,
  caratterizzato da elevate prestazioni in ricezione ed una potenza di uscita RF di 50W a 144Mhz.
  
@@ -3919,7 +3973,7 @@ Stazione radio con Kenwood TS790E in cima,
 È stato scelto proprio per la sua precisione e stabilità in frequenza,
  essenziali nelle comunicazioni digitali,
  nonché per la facilità di integrazione con il sistema informatico tramite la porta seriale CAT,
- oltre al fatto fondamentale che avevo solo questa radio disponibile.
+ oltre al fatto fondamentale che avevo solo questa radio disponibile per la banda VHF.
 \begin_inset Newline newline
 \end_inset
 
@@ -3951,7 +4005,7 @@ https://www.madexp.it/wp-content/uploads/2021/04/manuale.pdf
 \end_inset
 
 Questa interfaccia dal design più che collaudato,
- si basa su un progetto originale nato per rispondere alle specifiche esigenze dei soci ARI Pesaro per attività di modulazione digitale,
+ si basa su un progetto originale nato per rispondere alle specifiche esigenze dei soci ARI Pesaro per attività radio in digitale,
  principalmente nelle onde corte.
 \begin_inset Newline newline
 \end_inset
@@ -4100,22 +4154,6 @@ L'antenna è installata su un rotore Yaesu G-450,
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
 \series bold
 Test Operativo
 \begin_inset Newline newline
@@ -4128,8 +4166,8 @@ La prova finale di verifica dell'intero sistema è avvenuta orientando l'antenna
 \begin_inset Newline newline
 \end_inset
 
-Questa scelta è stata motivata dalla distanza significativa e dalla nota affidabilità di tale digipeater,
- rendendolo un banco di prova ideale per verificare le reali capacità di ricezione della stazione appena realizzata.
+Questa scelta è stata motivata dalla distanza non eccessiva e dalla nota affidabilità di tale digipeater,
+ rendendolo un banco di prova ideale per ottenere un sicuro successo iniziale.
 \begin_inset Newline newline
 \end_inset
 
@@ -4180,6 +4218,89 @@ I primi pacchetti APRS ricevuti
 
 Questo risultato iniziale conferma l'operatività del sistema,
  permettendomi quindi di passare oltre ovvero sperimentare con la ricezione ed invio di pacchetti APRS via software scritto da me.
+\begin_inset Newline newline
+\end_inset
+
+Ruotando l'antenna in varie direzioni ho notato come riuscissi 
+\begin_inset Quotes eld
+\end_inset
+
+ad attivare
+\begin_inset Quotes erd
+\end_inset
+
+ differenti digipeater,
+ ad esempio in Emilia,
+ in Abruzzo ed addirittura in Croazia.
+\begin_inset Newline newline
+\end_inset
+
+Una semplice analisi visiva dei pacchetti APRS mostrati nella schermata di Direwolf mi ha dato indicazione in tempo reale dei nominativi dei ripetitori digipeater che mi 
+\begin_inset Quotes eld
+\end_inset
+
+ripetevano
+\begin_inset Quotes erd
+\end_inset
+
+ il messaggio da me mandato,
+ poichè il nominativo radioamatoriale per com'è strutturato e standardizzato a livello internazionale ha in se un indicazione geografica di appartenenza ben precisa.
+\begin_inset Newline newline
+\end_inset
+
+Ad esempio 
+\begin_inset Quotes eld
+\end_inset
+
+T79PRS
+\begin_inset Quotes erd
+\end_inset
+
+ che è il nominativo del digipeater di R.S.M ha in se l'intestazione 
+\begin_inset Quotes eld
+\end_inset
+
+T79
+\begin_inset Quotes erd
+\end_inset
+
+ che indica appunto la Repubblica di San Marino mentre,
+ 
+\begin_inset Quotes eld
+\end_inset
+
+IW4EGP
+\begin_inset Quotes erd
+\end_inset
+
+ indica 
+\begin_inset Quotes eld
+\end_inset
+
+IW
+\begin_inset Quotes erd
+\end_inset
+
+ per Italia e 
+\begin_inset Quotes eld
+\end_inset
+
+4
+\begin_inset Quotes erd
+\end_inset
+
+ per 
+\begin_inset Quotes eld
+\end_inset
+
+Zona 4
+\begin_inset Quotes erd
+\end_inset
+
+ ovvero Emilia-Romagna.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage pagebreak
 \end_inset
 
@@ -4212,7 +4333,7 @@ aprs_decoder_GPS.py
 \end_layout
 
 \begin_layout Standard
-Per questione di spazio mi limiterò a trattare solo aprs_sender.py e aprs_decoder_GPS.py che ritengo essere esempi significativi poichè il primo è un esempio chiaro di come inviare un pacchetto APRS mentre il secondo permette di ricavare la posizione GPS dai pacchetti APRS ricevuti che è la 
+Mi limiterò a trattare solo aprs_sender.py e aprs_decoder_GPS.py che ritengo essere esempi significativi poichè il primo è un esempio chiaro di come inviare un pacchetto APRS mentre il secondo permette di ricavare la posizione GPS dai pacchetti APRS ricevuti che è la 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4225,7 +4346,8 @@ base
 \begin_inset Newline newline
 \end_inset
 
-Prima però bisogna specificare che tipo di protocollo usa Direwolf per dialogare con le applicazioni tramite la porta 8001 TCP.
+Non volevo appesantire il testo con codice ma questi due script sono veramente brevi e dimostrano il funzionamento base dello script che svilupperò alla fine di questa ricerca,
+ prima di procedere però bisogna specificare che tipo di protocollo usa Direwolf per dialogare con le applicazioni tramite la porta 8001 TCP.
 \end_layout
 
 \begin_layout Subsection
@@ -4235,9 +4357,25 @@ Il framing KISS di Direwolf e socket TCP
 \begin_layout Standard
 All’avvio,
  Direwolf crea un’interfaccia di comunicazione basata su socket e protocollo TCP,
- rendendo disponibile un servizio di scambio dei pacchetti APRS incapsulati in frame di tipo KISS,
+ rendendo disponibile un servizio di scambio dei frame AX.25 incapsulati in frame di tipo KISS,
  separato dall’elaborazione audio.
  
+\begin_inset Newline newline
+\end_inset
+
+KISS è l'acronimo di 
+\begin_inset Quotes eld
+\end_inset
+
+Keep It Simple Stupid
+\begin_inset Quotes erd
+\end_inset
+
+ ed è uno dei due protocolli di framing che Direwolf rende disponibili per la connessione.
+\begin_inset Newline newline
+\end_inset
+
+Vediamo come Direwolf permetta la connessione da processi differenti anche non neccessariamente sullo stesso host in cui è in esecuzione.
 \begin_inset Newline newline
 \end_inset
 
@@ -4285,8 +4423,8 @@ Scambio di frame KISS.
 \begin_inset Newline newline
 \end_inset
 
-Le applicazioni client che si connettono sulla porta 8001 dialogano con Direwolf utilizzando il protocollo KISS acronimo per Keep It Simple,
- Stupid.
+Le applicazioni client che si connettono sulla porta 8001,
+ inviano e ricevono frame AX.25 utilizzando il protocollo KISS
 \end_layout
 
 \begin_layout Standard
@@ -4295,7 +4433,7 @@ Lo studio e la trattazione del protocollo di framing KISS esula dalla mia ricerc
 \begin_inset Newline newline
 \end_inset
 
-Ciò implica che ho utilizzato una libreria pyton specifica per gestire il protocollo KISS.
+
 \end_layout
 
 \begin_layout Subsection
@@ -4303,8 +4441,20 @@ Ambiente di sviluppo e librerie
 \end_layout
 
 \begin_layout Standard
-Inizialmente mi sono ispirato agli esempi di programmazione socket in Python forniti dal professore Della Selva,
- scrivendo codice che mi permettesse di stabilire una connessione TCP a Direwolf e di recuperare i frame KISS.
+Inizialmente mi sono ispirato agli esempi di programmazione socket in Python presenti nel libro 
+\begin_inset Quotes eld
+\end_inset
+
+Reti di calcolatori e internet,
+ un approccio top down - F.
+ Kurose,
+ W.
+ Ross
+\begin_inset Quotes erd
+\end_inset
+
+,
+ per scrivere codice che mi permettesse di stabilire una connessione TCP a Direwolf e di recuperare i frame KISS.
 \begin_inset Newline newline
 \end_inset
 
@@ -4345,7 +4495,7 @@ Invio di un messaggio - aprs_sender.py
 \end_layout
 
 \begin_layout Standard
-In questo primo test vogliamo inviare un semplice pacchetto verso la rete APRS contenente un generico messaggio di saluto.
+In questo primo test vogliamo inviare un un generico messaggio di saluto verso la rete APRS.
  
 \begin_inset Newline newline
 \end_inset
@@ -4543,7 +4693,7 @@ if __name__ == "__main__":
 \end_layout
 
 \begin_layout Standard
-Nell'immagine sottostante si possono vedere i frame grezzi APRS ricevuti in verde,
+Nell'immagine sottostante si possono vedere i pacchetti APRS ricevuti in verde,
  trasmessi in rosa e ricevuti e decodificati in formato leggibile da Direwolf in blu.
 \begin_inset Newline newline
 \end_inset
@@ -4557,14 +4707,10 @@ sideways false
 status collapsed
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename prima_prova_TX.png
-	scale 50
+	scale 45
 
 \end_inset
 
@@ -4573,6 +4719,49 @@ status collapsed
 
 \begin_layout Plain Layout
 Prima prova di trasmissione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Modificando il codice è possibile inviare le proprie coordinate GPS.
+ Sfruttando il servizio offerto dal sito aprs.fi ho verificato quindi che presso la mia posizione geografica compaia l'icona della mia stazione APRS a distanza di qualche minuto dalla trasmissione radio,
+ e ciò è effettivamente avvenuto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename seconda_prova_TX_GPS_mappa.png
+	scale 55
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Test invio posizione GPS e feedback da aprs.fi
 \end_layout
 
 \end_inset
@@ -4650,65 +4839,8 @@ Legge frame KISS da un socket TCP e stampa,
 
 \begin_layout Plain Layout
 
-la riga:
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-    NOMINATIVO > POSIZIONE:
+la riga NOMINATIVO > POSIZIONE:
  lat long
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-- Riconosce un eventuale simbolo introduttore (!,
- =,
- /,
- @)
-\end_layout
-
-\begin_layout Plain Layout
-
-- Gestisce un timestamp zulu opzionale (hhmmssz) subito dopo l’introduttore
-\end_layout
-
-\begin_layout Plain Layout
-
-- Accetta sia 
-\begin_inset Quotes eld
-\end_inset
-
-/
-\begin_inset Quotes erd
-\end_inset
-
- che 
-\begin_inset Quotes eld
-\end_inset
-
-
-\backslash
-
-\backslash
-
-\begin_inset Quotes erd
-\end_inset
-
- come separatore lat/lon
-\end_layout
-
-\begin_layout Plain Layout
-
-- Formato delle coordinate:
- DDMM.mmN/DDDMM.mmE
 \end_layout
 
 \begin_layout Plain Layout
@@ -4869,10 +5001,6 @@ def extract_source(aprs_msg:
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
 def parse_position(aprs_msg:
  str) -> tuple[float | None,
  float | None]:
@@ -4935,10 +5063,6 @@ def parse_position(aprs_msg:
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
         lon_deg = int(match.group("lon_deg"))
 \end_layout
 
@@ -4964,10 +5088,6 @@ def parse_position(aprs_msg:
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
         return latitude,
  longitude
 \end_layout
@@ -4982,10 +5102,6 @@ def parse_position(aprs_msg:
 
         return None,
  None
-\end_layout
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -5051,14 +5167,6 @@ def handle_frame(raw_frame:
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
 def main() -> None:
 \end_layout
 
@@ -5090,7 +5198,7 @@ def main() -> None:
 
 \begin_layout Plain Layout
 
-        ki.read(callback=handle_frame)  # ciclo continuo
+        ki.read(callback=handle_frame)
 \end_layout
 
 \begin_layout Plain Layout
@@ -5119,10 +5227,6 @@ def main() -> None:
 
 \begin_layout Plain Layout
 
-\end_layout
-
-\begin_layout Plain Layout
-
 if __name__ == "__main__":
 \end_layout
 
@@ -5134,9 +5238,6 @@ if __name__ == "__main__":
 \end_inset
 
 Il risultato dell'esecuzione di questo script è il seguente:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 placement H
 alignment document
@@ -5148,7 +5249,7 @@ status collapsed
 \align center
 \begin_inset Graphics
 	filename terza_prova_RX_GPS.png
-	scale 50
+	scale 60
 
 \end_inset
 
@@ -5180,8 +5281,1659 @@ Ricezione coordinate GPS
 Realizzazione di un digipeater con Raspberry Pi 3 B
 \end_layout
 
+\begin_layout Standard
+Per approfondire la rete APRS ho realizzato un sistema ad hoc con funzione di digipeater.
+ Ho coinvolto la sezione di Pesaro 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://www.aripesaro.it/
+\end_layout
+
+\end_inset
+
+ dell’A.R.I.
+ Associazione Radioamatori Italiani
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://it.wikipedia.org/wiki/Associazione_Radioamatori_Italiani
+\begin_inset Newline newline
+\end_inset
+
+https://www.ari.it/
+\end_layout
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+L'A.R.I è un ente morale fondato da Guglielmo Marconi per unire i radioamatori italiani.
+ La sezione di Pesaro di cui sono socio,
+ mi ha offerto la possibilità di installare il mio digipeater presso il ripetitore VHF IR6A:
+ all’interno dello shelter posso così sfruttare l’antenna omnidirezionale già in quota e l’alimentazione elettrica esistente.
+\end_layout
+
+\begin_layout Subsection
+Hardware
+\end_layout
+
+\begin_layout Standard
+Il digipeater è stato ingenerizzato ed assemblato cercando di sfruttare hardware low-cost oppure di recupero facilmente adattabile allo scopo:
+\end_layout
+
+\begin_layout Enumerate
+Ricetrasmettitore hand held tipo 
+\begin_inset Quotes eld
+\end_inset
+
+walkie-talkie
+\begin_inset Quotes erd
+\end_inset
+
+ Baofeng UV-5R.
+\end_layout
+
+\begin_layout Enumerate
+Single board computer Raspberry Pi 3b e scheda audio USB 
+\begin_inset Quotes eld
+\end_inset
+
+generica
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Interfaccia radio-pc e sistema di alimentazione realizzati artigianalmente su di una basetta per prototipazione elettronica.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename digipeater3.jpeg
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Digipeater IR6A con il coperchio aperto per mostrare la sua componentistica
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ Nella foto si vedono la ventola installata per la ventilazione forzata e il portafusibile che protegge l’impianto da cortocircuiti,
+ evitando possibili principi d’incendio.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il connettore d’antenna è montato sulla parte superiore del coperchio apribile (non visibile in foto) e raggiunge la radio tramite un breve tratto di cavo coassiale RG-174 terminato con connettori SMA.
+\end_layout
+
+\begin_layout Subsection
+Software
+\end_layout
+
+\begin_layout Standard
+Per la componente software ho potuto riutilizzare quasi tutto ciò che avevo già sperimentato sul mio PC portatile:
+ sia lì che sul Raspberry Pi eseguo Debian Linux,
+ quindi la procedura è stata pressoché identica.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+TNC software – Direwolf
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Ho installato nuovamente Direwolf e,
+ nel file direwolf.conf,
+ ho abilitato la funzione DIGIPEAT per trasformarlo in digipeater.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Un’unità systemd (/etc/systemd/system/direwolf.service) avvia l’applicazione al boot e ne assicura il riavvio automatico in caso di crash o di riavvio del sistema.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Accesso remoto senza Internet sul sito
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Il sito non dispone di connettività WAN,
+ quindi per gestione e diagnostica ho riconfigurato il Raspberry Pi come access-point Wi-Fi stand-alone:
+\end_layout
+
+\begin_layout Itemize
+Il software RaspAP fornisce un AP 802.11 n e una web dashboard completa.
+\end_layout
+
+\begin_layout Itemize
+Dal parcheggio,
+ mi basta collegarmi alla rete Wi-Fi dedicata,
+ aprire la dashboard o fare login via SSH per interventi da shell.
+ Il servizio Telnet è disabilitato.
+\end_layout
+
+\begin_layout Itemize
+Per sicurezza ho impostato credenziali distinte per l’AP,
+ per la dashboard e per l’utente SSH;
+ inoltre l’autenticazione SSH accetta solo chiavi ed è limitata agli indirizzi della subnet Wi-Fi.
+\end_layout
+
+\begin_layout Standard
+Questa configurazione mi permette di controllare i log di Direwolf o modificarne la configurazione senza dover aprire lo shelter o coinvolgere il custode.
+\end_layout
+
+\begin_layout Subsection
+Installazione e test di funzionamento
+\end_layout
+
+\begin_layout Standard
+Il digipeater è stato installato in località Montegaudio,
+ nel comune di Pesaro,
+ municipalità di Monteciccardo,
+ a circa 380 m s.l.m.
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename digipeater6.jpeg
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Lo shelter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename digipeater4.jpeg
+	scale 15
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Il digipeater
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Per valutarne la copertura ho utilizzato la web-app aprs.fi:
+ il servizio raccoglie i pacchetti APRS inoltrati dai digipeater e connessi a Internet,
+ li geolocalizza e li visualizza su mappa insieme a diverse statistiche,
+ in particolare,
+ la funzione 
+\begin_inset Quotes eld
+\end_inset
+
+coverage map
+\begin_inset Quotes erd
+\end_inset
+
+ disegna una griglia colorata che rappresenta l’intensità del segnale ricevuto nei punti in cui è presente almeno un Internet APRS Gateway.
+ I colori impiegati sono:
+\end_layout
+
+\begin_layout Itemize
+rosso chiaro – segnale ottimo,
+ pacchetti ricevuti con margine;
+\end_layout
+
+\begin_layout Itemize
+gradualmente verso il viola – intensità via via più bassa;
+\end_layout
+
+\begin_layout Itemize
+assenza di colore – nessun dato perché non vi sono ricevitori Internet in quella cella.
+\end_layout
+
+\begin_layout Standard
+Analizzando questa mappa nei giorni successivi all’attivazione ho potuto confermare che il digipeater IR6A-Montegaudio copre l’area urbana di Pesaro,
+ la fascia costiera fino a Fano e parte dell’entroterra marchigiano,
+ con segnali solidi (rosso) nel raggio di 20–25 km e decrescenti (viola) fino a oltre 50 km in linea di vista.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ponte.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Punto geografico dove è situato IR6A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "foreground"
+backgroundcolor "none"
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename dati_pos_rx_ir6a.png
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mappa di copertura radio
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 APRS-soup
+\end_layout
+
+\begin_layout Standard
+Acquisita la capacità di inviare e ricevere pacchetti APRS e di estrarne le coordinate geografiche,
+ mi sono reso conto di non disporre di un’applicazione in grado di mostrare su una mappa le stazioni APRS ricevute.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ho quindi pensato di realizzare un piccolo progetto software sperimentale che facesse questo e altro.
+\end_layout
+
+\begin_layout Subsection
+Requisiti funzionali
+\end_layout
+
+\begin_layout Standard
+I requisiti di base,
+ oltre alla semplice visualizzazione delle stazioni sulla mappa,
+ sono:
+\end_layout
+
+\begin_layout Itemize
+Portabilità sulle piattaforme Linux e Windows.
+\end_layout
+
+\begin_layout Itemize
+Possibilità di ricevere e inviare messaggi di testo da e verso le altre stazioni.
+\end_layout
+
+\begin_layout Itemize
+Registrazione (logging) dei dati ricevuti per analisi future.
+\end_layout
+
+\begin_layout Subsection
+Dettagli dell'implementazione
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Architettura software in dettaglio
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+L'applicazione APRS-soup è stata progettata seguendo un'architettura client-server.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Questa scelta consente una chiara separazione tra l'interfaccia utente (front-end) e la logica di elaborazione dati (back-end).
+ 
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/iz6nnh/Scrivania/APRS-soup/relazione/sw_arch.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Architettura software.
+ In verde il lato Client,
+ in rosso il lato server
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ Il sistema è composto da tre componenti principali:
+\end_layout
+
+\begin_layout Itemize
+
+\shape slanted
+Direwolf:
+
+\shape default
+ utilizzato come modem software gestisce la modulazione e demodulazione dei pacchetti APRS e li espone tramite un'interfaccia TCP usando il protocollo KISS.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Back-end Python:
+
+\shape default
+ utilizza il framework Flask per offrire un server web che interagisce con Direwolf.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il back-end si occupa di decodificare e interpretare i pacchetti APRS ricevuti,
+ registrare le informazioni rilevanti in un database SQLite e aggiornare in tempo reale il front-end attraverso Server-Sent Events (SSE).
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Front-end Web:
+ 
+\shape default
+realizzato in HTML,
+ CSS e JavaScript,
+ visualizza su una mappa interattiva le stazioni APRS ricevute e gestisce l'invio e la ricezione di messaggi testuali.
+\end_layout
+
+\begin_layout Standard
+La comunicazione tra il back-end e Direwolf avviene attraverso un collegamento TCP sulla porta 8001.
+ 
+\begin_inset Newline newline
+\end_inset
+
+I dati aggiornati in tempo reale vengono inviati ai client connessi mediante la tecnica SSE,
+ permettendo una visualizzazione immediata e continua delle informazioni.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Funzionamento interno del back-end Python
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+All'avvio il back-end stabilisce una connessione TCP con Direwolf sulla porta 8001 utilizzando la libreria Python kiss.
+ 
+\begin_inset Newline newline
+\end_inset
+
+I frame AX.25 ricevuti vengono immediatamente processati attraverso la libreria aprslib,
+ che consente di estrarre facilmente i dati APRS contenuti.
+\begin_inset Newline newline
+\end_inset
+
+Nel dettaglio,
+ quando il back-end riceve un pacchetto AX.25,
+ lo analizza per identificare due principali tipologie di informazioni:
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Posizioni:
+
+\shape default
+ quando nel pacchetto sono presenti le coordinate geografiche (latitude e longitude),
+ queste informazioni sono salvate in una tabella SQLite dedicata (positions) assieme al nominativo della stazione (callsign),
+ SSID e timestamp.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il backend notifica immediatamente questa nuova posizione a tutti i client connessi tramite SSE.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Messaggi testuali:
+
+\shape default
+ quando il pacchetto contiene un messaggio ovvero presenta i campi from,
+ to,
+ e info ma non coordinate,
+ queste informazioni sono salvate nella tabella messages.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Anche in questo caso,
+ il messaggio viene notificato ai client per aggiornare istantaneamente l’interfaccia web.
+\end_layout
+
+\begin_layout Standard
+Il back-end inoltre espone alcune API JSON per consentire al front-end di recuperare facilmente le ultime posizioni e messaggi ricevuti.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Funzionamento del front-end web
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+L'interfaccia utente è realizzata tramite un documento HTML (map_template.html) e uno script JavaScript (APRS-soup.js).
+\begin_inset Newline newline
+\end_inset
+
+Il front-end visualizza una mappa interattiva generata con la libreria JavaScript Leaflet.
+\begin_inset Newline newline
+\end_inset
+
+Le stazioni ricevute vengono visualizzate dinamicamente sulla mappa,
+ con la possibilità per l’utente di filtrare la visualizzazione in base al tempo ovvero ultimi 15 minuti,
+ 30 minuti,
+ 1 ora,
+ ecc.
+ tramite un apposito controllo presente nell'interfaccia utente.
+\begin_inset Newline newline
+\end_inset
+
+La comunicazione in tempo reale è gestita sfruttando la tecnologia Server-Sent Events:
+ il front-end apre una connessione persistente verso il back-end Python per ricevere aggiornamenti immediati ogni qualvolta viene rilevato un nuovo pacchetto APRS.
+\begin_inset Newline newline
+\end_inset
+
+Lo script JavaScript si occupa inoltre della gestione della messaggistica.
+ 
+\begin_inset Newline newline
+\end_inset
+
+L’utente può inviare messaggi APRS inserendo il destinatario e il testo del messaggio in un pannello dedicato.
+\begin_inset Newline newline
+\end_inset
+
+Questi dati sono inviati al backend Python tramite una chiamata POST.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Una volta inviato,
+ il messaggio è inoltrato a Direwolf,
+ che si occupa della trasmissione vera e propria.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Formato e struttura del database
+\end_layout
+
+\begin_layout Standard
+Per la memorizzazione persistente dei pacchetti APRS ricevuti e per supportare funzionalità di consultazione storica e visualizzazione su mappa,
+ il progetto APRS-soup utilizza un database locale su file basato su SQLite 3.
+ 
+\begin_inset Newline newline
+\end_inset
+
+La scelta è ricaduta su questo motore per via della sua leggerezza,
+ portabilità,
+ semplicità di integrazione con applicazioni Python e assenza di necessità di configurazione lato server.
+\begin_inset Newline newline
+\end_inset
+
+Il database è costituito da due tabelle principali:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Tabella positions
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Questa tabella memorizza le posizioni geografiche delle stazioni APRS ricevute,
+ incluse le informazioni basilari di identificazione.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Ogni record rappresenta una stazione in un dato istante.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float table
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Campo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tipo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Descrizione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+id
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+INTEGER
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Identificatore univoco (chiave primaria)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+callsign
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TEXT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominativo della stazione ricevuta
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+latitude
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+REAL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Latitudine in gradi decimali
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+longitude
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+REAL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Longitudine in gradi decimali
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+time
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TEXT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Timestamp del pacchetto ricevuto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tabella positions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Questa tabella è utilizzata dal front-end per mostrare le stazioni sulla mappa.
+ 
+\begin_inset Newline newline
+\end_inset
+
+I dati vengono aggiornati in tempo reale non appena Direwolf,
+ tramite il back-end Python,
+ riceve un nuovo pacchetto contenente informazioni geografiche valide.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Tabella messages
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+Contiene i messaggi testuali APRS scambiati tra stazioni.
+ Ogni record rappresenta un singolo messaggio inviato o ricevuto.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float table
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Campo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Tipo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Descrizione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+id
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+INTEGER
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Identificatore univoco
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+from_call
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TEXT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominativo della stazione mittente
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+to_call
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TEXT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominativo della stazione destinataria
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+message
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TEXT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Contenuto testuale del messaggio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+time
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TEXT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Timestamp del pacchetto ricevuto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tabella messages
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+Il back-end salva automaticamente ogni nuovo messaggio ricevuto.
+ 
+\begin_inset Newline newline
+\end_inset
+
+La tabella è inoltre interrogabile dal front-end per mostrare lo storico dei messaggi,
+ o per notificare l’utente alla ricezione di nuovi testi.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+Gestione del database
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+L’accesso al database avviene nel back-end Python tramite la libreria sqlite3 di Python.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Al primo avvio del sistema viene automaticamente creato il file database 
+\begin_inset Quotes eld
+\end_inset
+
+positions.db
+\begin_inset Quotes erd
+\end_inset
+
+ se non già presente.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Le operazioni di scrittura sono effettuate in tempo reale alla ricezione di ciascun pacchetto valido.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Interfaccia utente
+\end_layout
+
+\begin_layout Standard
+L’interfaccia utente di APRS-soup è stata progettata per permettere il monitoraggio in tempo reale delle stazioni APRS ricevute.
+\begin_inset Newline newline
+\end_inset
+
+Inizialmente,
+ come visibile nella Figura 3.14 che è uno screenshot della prima versione,
+ l'interfaccia mostrava semplicemente alcuni marcatori puntuali posizionati sulla mappa,
+ con i relativi nominativi,
+ utilizzando mappe fornite da OpenStreetMap e renderizzate tramite la libreria JavaScript Leaflet.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename prima_mappa_aprs.png
+	scale 27
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prima versione di APRS-soup
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questa prima versione,
+ sebbene già operativa,
+ aveva funzionalità limitate:
+ i marcatori venivano aggiornati in tempo reale tramite Server-Sent Events ma mancavano interazioni dirette con le stazioni e strumenti di filtro.
+\begin_inset Newline newline
+\end_inset
+
+Successivamente,
+ il progetto è stato ampliato e migliorato,
+ come mostrato nella Figura 3.Y che è uno screenshot dell’interfaccia aggiornata.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+alignment document
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename aprs_soup.png
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ultima versione di APRS-soup
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Le nuove funzionalità introdotte includono un popup interattivo per ciascuna stazione.
+ Cliccando su un marcatore viene aperta una finestra contenente:
+\end_layout
+
+\begin_layout Itemize
+Il nominativo APRS della stazione.
+\end_layout
+
+\begin_layout Itemize
+Le coordinate in formato decimale e in formato gradi,
+ minuti e secondi.
+\end_layout
+
+\begin_layout Itemize
+Il timestamp dell’ultimo pacchetto ricevuto.
+\end_layout
+
+\begin_layout Itemize
+Le coordinate in formato compatibile Google Maps.
+\end_layout
+
+\begin_layout Itemize
+Una casella per l’invio diretto di un messaggio APRS a quella stazione.
+\end_layout
+
+\begin_layout Itemize
+Un'opzione per attivare la tracciatura della stazione nel tempo.
+\end_layout
+
+\begin_layout Standard
+Ho inoltre aggiunto:
+\end_layout
+
+\begin_layout Itemize
+Menù di selezione stazioni:
+ in alto a destra,
+ è stato aggiunto un selettore a tendina che permette di filtrare la visualizzazione tra tutte le stazioni ricevute oppure solo quelle ricevute in un dato intervallo di tempo.
+\end_layout
+
+\begin_layout Itemize
+Pannello messaggi:
+ consente di consultare i messaggi APRS ricevuti.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Quando un messaggio è disponibile,
+ esso viene mostrato nel pannello stesso,
+ fornendo una modalità semplice per la gestione della messaggistica.
+\end_layout
+
+\begin_layout Itemize
+Icone differenziate:
+ i simboli APRS sono ora rappresentati con immagini distinte ad esempio WX per stazioni meteo,
+ automobili,
+ pedoni,
+ antenne per digipeater etc,
+ permettendo di riconoscere a colpo d’occhio la tipologia di ogni stazione..
+\end_layout
+
+\begin_layout Standard
+L’interazione avviene completamente dal browser,
+ senza necessità di ricaricare la pagina o installare plug-in aggiuntivi.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Tutti gli aggiornamenti sono gestiti in tempo reale tramite eventi push da parte del server,
+ garantendo reattività.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Workaround per il sistema di mappatura e gestione offline delle tile
+\end_layout
+
+\begin_layout Standard
+Le mappe visualizzate nell’interfaccia utente sono basate su un sistema di tile raster pre-renderizzati,
+ organizzati in una gerarchia multistrato in base al livello di zoom.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Ogni mappa è composta da una griglia di immagini .png,
+ ciascuna corrispondente a un determinato riquadro geografico (tile) ad un preciso livello di dettaglio.
+\begin_inset Newline newline
+\end_inset
+
+Questo approccio è simile a quello adottato dai principali servizi cartografici online.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Tutti i tile necessari sono stati precaricati localmente all’interno di una cartella denominata geo,
+ integrata nel progetto.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il pacchetto completo occupa oltre 3 GB di spazio su disco,
+ e copre un’area estesa dell’Europa,
+ con un livello di zoom sufficiente per applicazioni APRS su scala regionale e nazionale.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A differenza di altri progetti che utilizzano i tile direttamente da server remoti ad esempio quelli di OpenStreetMap,
+ si è scelto di evitare dipendenze da connessione Internet.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+L’obiettivo principale era infatti garantire operatività anche in ambienti privi di accesso alla rete,
+ ad esempio in installazioni remote o scenari di emergenza.
+\begin_inset Newline newline
+\end_inset
+
+Poiché OpenStreetMap non fornisce direttamente tile scaricabili in formato immagine PNG,
+ è stato necessario elaborare un workaround.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ In particolare,
+ sono state seguite le seguenti fasi:
+\end_layout
+
+\begin_layout Itemize
+Download del pacchetto dati vettoriali dell’Europa da MapTiler
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://data.maptiler.com/downloads/europe/
+\end_layout
+
+\end_inset
+
+,
+ contenente dati cartografici aggiornati basati su OpenStreetMap in formato vettoriale.
+\end_layout
+
+\begin_layout Itemize
+Importazione nel software GIS open-source QGIS,
+ che permette la manipolazione e visualizzazione dei dati geografici,
+ oltre a offrire strumenti avanzati per il rendering cartografico.
+\end_layout
+
+\begin_layout Itemize
+Utilizzo di un plugin specifico di QGIS per la generazione automatica dei tile raster.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Il plugin ha provveduto a creare la gerarchia di cartelle in formato compatibile con Leaflet (livello di zoom / X / Y.png) e a esportare i tile in locale.
+\end_layout
+
+\begin_layout Itemize
+Integrazione nel server APRS-soup:
+ il server web è stato configurato per servire i tile locali al browser,
+ evitando quindi richieste esterne e aumentando la reattività dell’applicazione.
+\end_layout
+
+\begin_layout Chapter
+Conclusioni
+\end_layout
+
+\begin_layout Standard
+L’obiettivo iniziale di questo progetto era duplice:
+ da un lato comprendere a fondo il funzionamento del sistema APRS e dall’altro sviluppare una stazione operativa in grado di ricevere,
+ decodificare,
+ visualizzare e interagire con i dati APRS tramite strumenti software e hardware progettati,
+ realizzati e configurati in autonomia.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Dal punto di vista tecnico,
+ tutti gli obiettivi prefissati possono ritenersi pienamente raggiunti.
+ La realizzazione della stazione APRS,
+ basata su un sistema Linux con Direwolf come TNC software,
+ ha permesso la ricezione affidabile di pacchetti APRS via radio,
+ la loro decodifica e l’analisi in tempo reale.
+ 
+\begin_inset Newline newline
+\end_inset
+
+L’integrazione con un’antenna direttiva ad alto guadagno ha reso possibile la ricezione di stazioni remote,
+ permettendo verifiche di portata radio e sperimentazione delle modalità di instradamento dei frame.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Il progetto APRS-soup,
+ sviluppato come estensione funzionale,
+ ha rappresentato un’evoluzione significativa rispetto all’idea iniziale.
+\begin_inset Newline newline
+\end_inset
+
+ Inizialmente pensato come semplice visualizzatore cartografico,
+ il sistema si è evoluto in una vera e propria piattaforma APRS locale,
+ dotata di interfaccia web,
+ backend asincrono,
+ memorizzazione su database,
+ gestione dei messaggi e sistema cartografico offline basato su mappe locali.
+\begin_inset Newline newline
+\end_inset
+
+Tutti questi elementi hanno richiesto competenze in ambiti quali reti di calcolatori,
+ gestione di database,
+ programmazione web e GIS,
+ dimostrando un buon livello di interdisciplinarità e un'applicazione concreta delle conoscenze acquisite nei diversi corsi di questa Laurea in Informatica Applicata.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+La portabilità del sistema,
+ la possibilità di utilizzo offline e l’interazione con stazioni reali su vasta scala rendono APRS-soup uno strumento funzionale e potenzialmente estendibile,
+ sicuramente ancora perfettibile.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Dal punto di vista personale,
+ lo sviluppo del progetto ha offerto l’occasione per consolidare e applicare in modo pratico molte delle competenze teoriche acquisite,
+ ma anche per affrontare problematiche reali legate all’integrazione di sistemi eterogenei e alla progettazione di software funzionale,
+ stabile e riutilizzabile.
+ 
+\begin_inset Newline newline
+\end_inset
+
+È stata inoltre un’opportunità per valorizzare competenze pregresse nell’ambito della radiotecnica,
+ combinandole con strumenti software moderni.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In conclusione,
+ il progetto ha rispettato gli obiettivi iniziali,
+ superandoli in termini di complessità e qualità dei risultati.
+ Rimane ampio spazio per futuri miglioramenti ed estensioni,
+ ma la base realizzata rappresenta un sistema funzionale,
+ solido e versatile.
 \end_layout
 
 \end_body
