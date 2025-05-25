@@ -24,8 +24,6 @@ KISS_PORT = int(os.getenv("KISS_PORT", "8001"))
 MYCALL    = os.getenv("MYCALL",   "IZ6NNH")
 
 subscribers = []          # code SSE
-_kiss_link  = None        # link KISS attualmente attivo
-_kiss_lock  = threading.Lock()  # protegge l’accesso a _kiss_link
 
 # --------------------------------------------------------------------------- #
 # Database                                                                    #
@@ -107,29 +105,6 @@ def handle_frame(raw):
     except Exception as e:
         print("PARSE ERROR:", e, flush=True)
 
-# thread di riconnessione KISS: tenta, e se cade, riprova ogni 5 s
-def kiss_worker():
-    global _kiss_link
-    while True:
-        try:
-            link = kiss.TCPKISS(host=KISS_HOST, port=KISS_PORT, strip_df_start=True)
-            link.start()
-            with _kiss_lock:
-                _kiss_link = link
-            print(f"KISS connesso a {KISS_HOST}:{KISS_PORT}", flush=True)
-
-            # resta bloccato finché il socket è vivo
-            link.read(callback=handle_frame)
-
-        except Exception as e:
-            print("KISS worker error:", e, flush=True)
-
-        finally:
-            with _kiss_lock:
-                _kiss_link = None
-
-        time.sleep(5)
-
 # --------------------------------------------------------------------------- #
 # Query                                                                       #
 # --------------------------------------------------------------------------- #
@@ -178,8 +153,15 @@ def sse_stream():
 def main():
     init_db()
 
-    # avvia thread di (ri)connessione KISS
-    threading.Thread(target=kiss_worker, daemon=True).start()
+    global kiss_link
+    kiss_link = kiss.TCPKISS(host=KISS_HOST, port=KISS_PORT, strip_df_start=True)
+    kiss_link.start()
+
+    threading.Thread(
+      target=kiss_link.read,
+      kwargs={'callback': handle_frame},
+      daemon=True
+    ).start()
 
     app = Flask(__name__)
 
@@ -224,23 +206,16 @@ def main():
         txt  = request.form.get('message', '').strip()
         if not dest or not txt:
             return "dest e message obbligatori", 400
-
-        with _kiss_lock:
-            link = _kiss_link
-        if link is None:
-            return "TNC non connesso – ritenta più tardi", 503
-
         try:
             frm = Frame.ui(destination=dest, source=MYCALL,
                            path=["WIDE2-2"], info=">"+txt)
-            link.write(frm)
+            kiss_link.write(frm)
             return "ok", 200
         except Exception as e:
             return str(e), 500
 
-    app.run(host='0.0.0.0', port=5032)
+    app.run(host='0.0.0.0', port=5033)
 
 # --------------------------------------------------------------------------- #
 if __name__ == "__main__":
     main()
-
