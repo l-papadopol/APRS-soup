@@ -14,6 +14,10 @@
 * **Licenza CC BY-NC-ND 3.0** — uso libero per scopi personali e didattici.
 
 ---
+## Dipendenze
+pip install kiss3 aprs3 ax253 aprslib Flask
+
+---
 
 ## Screenshot
 
